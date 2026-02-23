@@ -1,0 +1,22 @@
+# Site settings
+title: "Bitcoin Insight"
+description: "A modern, free and open-source iOS app that beautifully visualizes key Bitcoin network metrics and lets you track watch-only wallets."
+url: "https://bitcoin-insight.app"
+baseurl: ""
+
+# SEO settings
+lang: en
+timezone: Europe/Berlin
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+
+# Plugins
+plugins:
+  - jekyll-sitemap
+
+# Exclude from build
+exclude:
+  - README.md
+  - LICENSE

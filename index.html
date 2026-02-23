@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Insight – Mempool in Your Pocket</title>
+  <meta name="description" content="Bitcoin Insight – A modern, free and open-source iOS app for Bitcoin mempool data and watch-only wallets.">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: rgba(255, 255, 255, 0.04);
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --text: #e8e8ed;
+      --text-muted: #8e8e93;
+      --accent: #f7931a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Animated blur background */
+    .bg-blur {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bg-blur .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.35;
+    }
+
+    .blob-1 {
+      width: 600px;
+      height: 600px;
+      background: #f7931a;
+      top: -10%;
+      left: -10%;
+      animation: float1 20s ease-in-out infinite;
+    }
+
+    .blob-2 {
+      width: 500px;
+      height: 500px;
+      background: #6e3ff5;
+      bottom: -10%;
+      right: -10%;
+      animation: float2 25s ease-in-out infinite;
+    }
+
+    .blob-3 {
+      width: 400px;
+      height: 400px;
+      background: #1a8ff7;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: float3 22s ease-in-out infinite;
+    }
+
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(15vw, 10vh) scale(1.1); }
+      50% { transform: translate(5vw, 30vh) scale(0.9); }
+      75% { transform: translate(-5vw, 15vh) scale(1.05); }
+    }
+
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(-15vw, -10vh) scale(0.9); }
+      50% { transform: translate(-5vw, -25vh) scale(1.1); }
+      75% { transform: translate(10vw, -10vh) scale(0.95); }
+    }
+
+    @keyframes float3 {
+      0%, 100% { transform: translate(-50%, -50%) scale(1); }
+      33% { transform: translate(-30%, -60%) scale(1.15); }
+      66% { transform: translate(-70%, -40%) scale(0.85); }
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Nav */
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+    }
+
+    .nav-bar.scrolled {
+      background: rgba(10, 10, 15, 0.75);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom-color: var(--surface-border);
+    }
+
+    nav {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-links a.active {
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 100px 0 80px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-typed {
+      display: inline;
+    }
+
+    .hero-cursor {
+      display: inline-block;
+      width: 3px;
+      height: 0.85em;
+      background: var(--accent);
+      margin-left: 4px;
+      vertical-align: baseline;
+      animation: blink 0.7s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .hero h1 .gradient {
+      background: linear-gradient(135deg, #f7931a, #ffd085);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--surface-border);
+    }
+
+    /* Features */
+    .features {
+      padding: 80px 0;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+
+    .feature-card:hover {
+      border-color: rgba(247, 147, 26, 0.3);
+      transform: translateY(-4px);
+    }
+
+    .feature-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* Screenshots */
+    .screenshots {
+      padding: 80px 0;
+    }
+
+    .screenshots h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+
+    .screenshots-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .scroll-btn {
+      position: relative;
+      z-index: 2;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--surface-border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .scroll-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--accent);
+    }
+
+    .screenshots-scroll {
+      display: flex;
+      gap: 24px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 0 24px;
+      scrollbar-width: none;
+      flex: 1;
+    }
+
+    .screenshots-scroll::before,
+    .screenshots-scroll::after {
+      content: '';
+      flex-shrink: 0;
+      width: 1px;
+    }
+
+    .screenshots-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .screenshot-frame {
+      width: 300px;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      scroll-snap-align: center;
+    }
+
+    .screenshot-frame:hover {
+      transform: translateY(-8px);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* Open Source */
+    .open-source {
+      padding: 80px 0;
+      text-align: center;
+    }
+
+    .open-source-card {
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
+      border-radius: 24px;
+      padding: 48px 32px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .open-source-card h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .open-source-card p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 0;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--surface-border);
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--text);
+    }
+
+    .footer-links {
+      margin-top: 12px;
+      font-size: 0.85rem;
+    }
+
+    .footer-divider {
+      margin: 0 8px;
+      opacity: 0.3;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal {
+      background: #111118;
+      border: 1px solid var(--surface-border);
+      border-radius: 20px;
+      max-width: 640px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+    }
+
+    .modal h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+    }
+
+    .modal h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 8px;
+    }
+
+    .modal p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .modal a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .modal a:hover {
+      text-decoration: underline;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--surface-border);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: border-color 0.2s;
+    }
+
+    .modal-close:hover {
+      border-color: var(--accent);
+    }
+
+    @media (max-width: 640px) {
+      .modal {
+        padding: 24px 20px;
+        border-radius: 16px;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .bg-blur .blob {
+        opacity: 0.15;
+        filter: blur(100px);
+      }
+
+      .blob-1 {
+        width: 300px;
+        height: 300px;
+      }
+
+      .blob-2 {
+        width: 250px;
+        height: 250px;
+      }
+
+      .blob-3 {
+        width: 200px;
+        height: 200px;
+      }
+
+      .hero {
+        padding: 50px 0 40px;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        margin-bottom: 28px;
+        padding: 0 8px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .btn {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+        padding: 14px 24px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .features {
+        padding: 50px 0;
+      }
+
+      .features h2,
+      .screenshots h2 {
+        font-size: 1.5rem;
+        margin-bottom: 28px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .feature-card {
+        padding: 24px;
+      }
+
+      .screenshots {
+        padding: 50px 0;
+      }
+
+      .screenshot-frame {
+        width: 240px;
+      }
+
+      .scroll-btn {
+        width: 32px;
+        height: 32px;
+      }
+
+      .scroll-btn svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .open-source {
+        padding: 50px 0;
+      }
+
+      .open-source-card {
+        padding: 32px 20px;
+      }
+
+      .open-source-card h2 {
+        font-size: 1.4rem;
+      }
+
+      .open-source-card p {
+        font-size: 0.95rem;
+      }
+
+      footer {
+        padding: 28px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-blur">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+  <script>
+    (function() {
+      var key = 'blob-anim-start';
+      var start = sessionStorage.getItem(key);
+      if (!start) {
+        start = Date.now();
+        sessionStorage.setItem(key, start);
+      }
+      var elapsed = (Date.now() - start) / 1000;
+      document.querySelectorAll('.bg-blur .blob').forEach(function(blob) {
+        blob.style.animationDelay = '-' + elapsed + 's';
+      });
+    })();
+  </script>
+
+  <div class="nav-bar">
+    <nav>
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="assets/logo.png" alt="Bitcoin Insight Logo">
+        </div>
+        Bitcoin Insight
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener">GitHub <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -1px; margin-left: 2px;"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg></a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="container">
+
+    <section class="hero">
+      <h1>
+        <span class="hero-typed" id="heroTyped">The Bitcoin Mempool.</span><span class="hero-cursor"></span><br>
+        <span class="gradient">In Your Pocket.</span>
+      </h1>
+      <p>A modern, free iOS app that beautifully visualizes key Bitcoin network metrics and lets you track watch-only wallets. Fully open source.</p>
+      <div class="hero-buttons">
+        <a href="https://apps.apple.com/de/app/bitcoin-insight-mempool/id6753660088" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </section>
+
+    <section class="features" id="features">
+      <h2>Features</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Network at a Glance</h3>
+          <p>Beautifully visualized Bitcoin network data – block height, halving countdown, mempool activity, fees, difficulty, Lightning stats and more.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👁️</div>
+          <h3>Watch-Only Wallets</h3>
+          <p>Add your wallet addresses and track balances and transactions without exposing private keys.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Privacy First</h3>
+          <p>No accounts, no tracking, no ads. Your data stays on your device.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>Open Source</h3>
+          <p>The entire source code is publicly available. Transparency and trust through open development.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="screenshots" id="screenshots">
+      <h2>Screenshots</h2>
+      <div class="screenshots-wrapper">
+        <button class="scroll-btn" onclick="document.getElementById('screenshotScroll').scrollBy({left: -324, behavior: 'smooth'})" aria-label="Scroll left">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="screenshots-scroll" id="screenshotScroll">
+          <div class="screenshot-frame"><img src="screenshots/1.png" alt="Dashboard – Bitcoin mempool data" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/2.png" alt="Network statistics" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/3.png" alt="Circulating supply" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/4.png" alt="Halving countdown" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/5.png" alt="Block explorer" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/6.png" alt="Block reward schedule" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/7.png" alt="Difficulty adjustment" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/8.png" alt="Hashrate" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/9.png" alt="Lightning Network" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/10.png" alt="Mempool details" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/11.png" alt="Set up watch-only wallets" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/12.png" alt="Wallet overview" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/13.png" alt="Transactions and addresses" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/14.png" alt="Wallet balances" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/15.png" alt="Transaction list" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/16.png" alt="Address details" loading="lazy"></div>
+          <div class="screenshot-frame"><img src="screenshots/17.png" alt="Settings" loading="lazy"></div>
+        </div>
+        <button class="scroll-btn" onclick="document.getElementById('screenshotScroll').scrollBy({left: 324, behavior: 'smooth'})" aria-label="Scroll right">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </section>
+
+    <section class="open-source" id="open-source">
+      <div class="open-source-card">
+        <h2>100% Open Source</h2>
+        <p>Bitcoin Insight is completely free and open source. Check out the code, contribute, or build your own version.</p>
+        <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          View on GitHub
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Bitcoin Insight. Free &amp; Open Source under the <a href="https://github.com/Miotares/bitcoin-insight/blob/main/LICENSE" target="_blank" rel="noopener">MIT License</a>.</p>
+      <div class="footer-links">
+        <a href="#privacy" onclick="document.getElementById('privacyModal').style.display='flex'">Privacy Policy</a>
+        <span class="footer-divider">|</span>
+        <a href="#imprint" onclick="document.getElementById('imprintModal').style.display='flex'">Imprint</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div class="modal-overlay" id="privacyModal" onclick="if(event.target===this)this.style.display='none'">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('privacyModal').style.display='none'" aria-label="Close">&times;</button>
+      <h2>Privacy Policy</h2>
+      <p><strong>Last updated:</strong> February 2025</p>
+
+      <h3>No Data Collection</h3>
+      <p>Bitcoin Insight does not collect, store, or transmit any personal data. There are no user accounts, no analytics, no tracking, and no advertising.</p>
+
+      <h3>Local Storage Only</h3>
+      <p>All data you enter into the app (such as wallet addresses) is stored exclusively on your device. Nothing is sent to our servers – we don't operate any.</p>
+
+      <h3>Third-Party API</h3>
+      <p>To display Bitcoin network data, the app connects to the public <a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a> API. These requests are made directly from your device to their servers. We have no access to these requests. Please refer to the <a href="https://mempool.space/about" target="_blank" rel="noopener">mempool.space privacy policy</a> for details on how they handle API requests.</p>
+
+      <h3>Apple &amp; App Store</h3>
+      <p>Bitcoin Insight is distributed via the Apple App Store. The privacy policies of <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple</a> and the <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener">App Store</a> apply accordingly.</p>
+
+      <h3>No Cookies</h3>
+      <p>Neither the app nor this website uses cookies or any other tracking technologies.</p>
+
+      <h3>Contact</h3>
+      <p>If you have questions about this privacy policy, you can reach us at <a href="mailto:miotares@proton.me">miotares@proton.me</a>.</p>
+    </div>
+  </div>
+
+  <!-- Imprint Modal -->
+  <div class="modal-overlay" id="imprintModal" onclick="if(event.target===this)this.style.display='none'">
+    <div class="modal">
+      <button class="modal-close" onclick="document.getElementById('imprintModal').style.display='none'" aria-label="Close">&times;</button>
+      <h2>Impressum</h2>
+      <p>Angaben gem. &sect; 5 TMG</p>
+
+      <h3>Verantwortlich</h3>
+      <p>
+        Merlin Kreuzkam<br>
+        c/o Online-Impressum.de #5433<br>
+        Europaring 90<br>
+        53757 Sankt Augustin
+      </p>
+
+      <h3>Kontakt</h3>
+      <p>E-Mail: <a href="mailto:miotares@proton.me">miotares@proton.me</a></p>
+
+      <h3>Haftungsausschluss</h3>
+      <p>Die Inhalte dieser Website und der App werden mit gr&ouml;&szlig;tm&ouml;glicher Sorgfalt erstellt. F&uuml;r die Richtigkeit, Vollst&auml;ndigkeit und Aktualit&auml;t der Inhalte wird jedoch keine Gew&auml;hr &uuml;bernommen. Die Nutzung der App erfolgt auf eigene Verantwortung.</p>
+    </div>
+  </div>
+
+  <script>
+    const nav = document.querySelector('.nav-bar');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+    const sections = document.querySelectorAll('section[id]');
+
+    function updateActive() {
+      const scrollY = window.scrollY + 100;
+
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+
+      let current = '';
+      sections.forEach(section => {
+        if (scrollY >= section.offsetTop) {
+          current = section.id;
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+      });
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+
+    // Screenshot auto-scroll
+    const scroller = document.getElementById('screenshotScroll');
+    const frames = scroller.querySelectorAll('.screenshot-frame');
+    let autoScrollIndex = 0;
+    let autoScrollTimer = null;
+    let pauseTimeout = null;
+
+    function scrollToIndex(i) {
+      const frame = frames[i];
+      if (!frame) return;
+      const scrollLeft = frame.offsetLeft - scroller.offsetLeft - 24;
+      scroller.scrollTo({ left: scrollLeft, behavior: 'smooth' });
+    }
+
+    function startAutoScroll() {
+      stopAutoScroll();
+      autoScrollTimer = setInterval(() => {
+        autoScrollIndex++;
+        if (autoScrollIndex >= frames.length) {
+          autoScrollIndex = 0;
+        }
+        scrollToIndex(autoScrollIndex);
+      }, 3000);
+    }
+
+    function stopAutoScroll() {
+      if (autoScrollTimer) {
+        clearInterval(autoScrollTimer);
+        autoScrollTimer = null;
+      }
+    }
+
+    function pauseAndResume() {
+      stopAutoScroll();
+      clearTimeout(pauseTimeout);
+      pauseTimeout = setTimeout(() => {
+        // sync index to current scroll position
+        const scrollCenter = scroller.scrollLeft + scroller.clientWidth / 2;
+        let closest = 0;
+        let closestDist = Infinity;
+        frames.forEach((f, i) => {
+          const center = f.offsetLeft - scroller.offsetLeft + f.offsetWidth / 2;
+          const dist = Math.abs(center - scrollCenter);
+          if (dist < closestDist) {
+            closestDist = dist;
+            closest = i;
+          }
+        });
+        autoScrollIndex = closest;
+        startAutoScroll();
+      }, 5000);
+    }
+
+    scroller.addEventListener('pointerdown', pauseAndResume, { passive: true });
+    scroller.addEventListener('wheel', pauseAndResume, { passive: true });
+    scroller.querySelectorAll('.scroll-btn').forEach(btn => {
+      btn.addEventListener('click', pauseAndResume);
+    });
+
+    // also pause when arrow buttons are clicked
+    document.querySelectorAll('.scroll-btn').forEach(btn => {
+      btn.addEventListener('click', pauseAndResume);
+    });
+
+    startAutoScroll();
+
+    // Typewriter effect
+    const typedEl = document.getElementById('heroTyped');
+    const phrases = ['The Bitcoin Mempool.', 'Your Bitcoin Wallets.'];
+    let phraseIndex = 0;
+    const deleteSpeed = 40;
+    const typeSpeed = 60;
+    const pauseBetween = 3000;
+
+    function deleteText(cb) {
+      const text = typedEl.textContent;
+      if (text.length === 0) return cb();
+      typedEl.textContent = text.slice(0, -1);
+      setTimeout(() => deleteText(cb), deleteSpeed);
+    }
+
+    function typeText(target, i, cb) {
+      if (i > target.length) return cb();
+      typedEl.textContent = target.slice(0, i);
+      setTimeout(() => typeText(target, i + 1, cb), typeSpeed);
+    }
+
+    function cycle() {
+      setTimeout(() => {
+        deleteText(() => {
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(() => {
+            typeText(phrases[phraseIndex], 1, cycle);
+          }, 300);
+        });
+      }, pauseBetween);
+    }
+
+    cycle();
+  </script>
+</body>
+</html>
