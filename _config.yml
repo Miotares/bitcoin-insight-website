@@ -1,6 +1,6 @@
 # Site settings
 title: "Bitcoin Insight"
-description: "A modern, free and open-source iOS app that beautifully visualizes key Bitcoin network metrics and lets you track watch-only wallets."
+description: "A beautifully designed, free and open-source iOS app for live Bitcoin mempool & network data, watch-only wallets, and Home & Lock Screen widgets."
 url: "https://bitcoin-insight.app"
 baseurl: ""
 
@@ -20,3 +20,4 @@ plugins:
 exclude:
   - README.md
   - LICENSE
+  - .claude
