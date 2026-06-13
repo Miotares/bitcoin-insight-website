@@ -754,7 +754,8 @@
       .hero-copy p.lede { font-size: 1.05rem; }
       .btn { width: 100%; }
       .hero-buttons { flex-direction: column; }
-      .hero-phone { width: 216px; max-width: 70%; }
+      /* drop the hero device entirely on phones — copy + CTA only */
+      .hero-visual { display: none; }
       .bento { grid-template-columns: 1fr; }
       .feature-card, .feature-card.wide { grid-column: span 1; }
       .features, .widgets, .wallets { padding: 60px 0; }
