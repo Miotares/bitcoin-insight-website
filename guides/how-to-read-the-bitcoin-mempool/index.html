@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Read the Bitcoin Mempool (Beginner's Guide)</title>
+  <meta name="description" content="Bitcoin mempool explained: what the waiting room of unconfirmed transactions is, how fees and block space interact, and how to read congestion on iPhone.">
+  <meta name="author" content="Merlin Kreuzkam">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-itunes-app" content="app-id=6753660088">
+  <link rel="canonical" href="https://bitcoin-insight.app/guides/how-to-read-the-bitcoin-mempool/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bitcoin Insight">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="How to Read the Bitcoin Mempool (Beginner's Guide)">
+  <meta property="og:description" content="The mempool is Bitcoin's waiting room of unconfirmed transactions. Learn to read fees, congestion and blocks-to-clear on iPhone.">
+  <meta property="og:url" content="https://bitcoin-insight.app/guides/how-to-read-the-bitcoin-mempool/">
+  <meta property="og:image" content="https://bitcoin-insight.app/assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bitcoin Insight – the native Bitcoin mempool app for iPhone">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Read the Bitcoin Mempool (Beginner's Guide)">
+  <meta name="twitter:description" content="The mempool is Bitcoin's waiting room of unconfirmed transactions. Learn to read fees, congestion and blocks-to-clear.">
+  <meta name="twitter:image" content="https://bitcoin-insight.app/assets/og-image.png">
+
+  <link rel="icon" type="image/png" href="../../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../../assets/logo.png">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bitcoin-insight.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://bitcoin-insight.app/guides/" },
+          { "@type": "ListItem", "position": 3, "name": "How to read the Bitcoin mempool", "item": "https://bitcoin-insight.app/guides/how-to-read-the-bitcoin-mempool/" }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": "How to read the Bitcoin mempool (beginner's guide)",
+        "description": "Bitcoin mempool explained: what the waiting room of unconfirmed transactions is, how fees and block space interact, and how to read congestion on iPhone.",
+        "inLanguage": "en",
+        "datePublished": "2026-06-29",
+        "dateModified": "2026-06-29",
+        "image": "https://bitcoin-insight.app/assets/og-image.png",
+        "mainEntityOfPage": "https://bitcoin-insight.app/guides/how-to-read-the-bitcoin-mempool/",
+        "author": { "@type": "Organization", "name": "Bitcoin Insight", "url": "https://bitcoin-insight.app/" },
+        "publisher": { "@type": "Organization", "name": "Bitcoin Insight", "url": "https://bitcoin-insight.app/", "logo": { "@type": "ImageObject", "url": "https://bitcoin-insight.app/assets/logo.png" } }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What does mempool congestion mean?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Congestion means more transactions are arriving than the next few blocks can confirm, so they pile up in the mempool. Miners pick the highest fee-rate transactions first, so when the backlog grows you need a higher sat/vB fee to confirm quickly, and low-fee transactions may wait hours or longer." }
+          },
+          {
+            "@type": "Question",
+            "name": "What do vMB and blocks-to-clear mean?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A block holds about 4 million weight units, often shown as roughly 1.5 to 2 vMB of transaction data. Mempool size is measured in virtual megabytes (vMB), and blocks-to-clear is simply that size divided by one block. If the mempool holds 6 vMB, it is about three blocks deep, or roughly 30 minutes of backlog at the typical ten-minute block time." }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I watch the Bitcoin mempool on my iPhone?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Use Bitcoin Insight, a native iOS app built on the public mempool.space API. Its dashboard shows live mempool size, low/medium/high sat/vB fee bands and block height, the block explorer lets you track any transaction, and the fee chart shows how congestion is trending. It is free, open source, with no accounts or ads." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-glow"></div>
+
+  <div class="nav-bar" id="navBar">
+    <nav>
+      <a href="/" class="logo" aria-label="Bitcoin Insight home">
+        <img src="../../assets/logo.png" alt="Bitcoin Insight app icon" width="34" height="34">
+        Bitcoin Insight
+      </a>
+      <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="nav-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+    </nav>
+  </div>
+
+  <main class="wrap" id="main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> › <a href="/guides/">Guides</a> › <span>How to read the Bitcoin mempool</span>
+    </nav>
+
+    <header class="guide-head">
+      <span class="eyebrow"><span class="dot"></span> Guide</span>
+      <h1>How to read the Bitcoin <span class="accent-text">mempool</span></h1>
+      <p class="guide-meta">Last updated June 2026 · 6 min read</p>
+    </header>
+
+    <article>
+      <p class="lead">The mempool is Bitcoin's waiting room: the set of transactions that have been broadcast but not yet confirmed in a block. Learning to read it tells you exactly how busy the network is and what fee you need to pay to get through quickly.</p>
+
+      <div class="callout">
+        <strong>In a nutshell:</strong> the mempool holds unconfirmed transactions. Miners pack the highest fee-rate ones into the next block, so the mempool acts like a live auction for block space. Read the fee bands (low/medium/high sat/vB) and the backlog (vMB / blocks-to-clear) and you'll know whether to send now or wait.
+      </div>
+
+      <div class="toc">
+        <div class="toc-title">On this page</div>
+        <ul>
+          <li><a href="#what">What the mempool is</a></li>
+          <li><a href="#why">Why the mempool exists</a></li>
+          <li><a href="#fees">Fees, block space and sat/vB</a></li>
+          <li><a href="#congestion">What "congestion" means</a></li>
+          <li><a href="#bands">Reading the fee bands</a></li>
+          <li><a href="#vmb">vMB and blocks-to-clear</a></li>
+          <li><a href="#iphone">Watching it on iPhone</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <h2 id="what">What the mempool is</h2>
+      <p>"Mempool" is short for <em>memory pool</em>. When you send Bitcoin, your transaction is broadcast to the network and every node holds it in memory while it waits to be confirmed. That holding area is the mempool, think of it as the waiting room of unconfirmed transactions.</p>
+      <p>A transaction sits in the mempool until a miner includes it in a block. New blocks arrive roughly every ten minutes, and each block can only carry so much data, so the mempool is where transactions queue for their turn. Once a transaction is mined, it leaves the mempool and becomes part of the blockchain.</p>
+
+      <h2 id="why">Why the mempool exists</h2>
+      <p>Bitcoin produces a new block only about every ten minutes, and each block has a hard size limit. That means block space is scarce, and at busy times more transactions are created than a single block can hold. The mempool is the buffer that absorbs this difference, it lets the network accept transactions instantly while they wait for room in a block.</p>
+      <p>Crucially, the mempool is not a single global list. Every node keeps its own copy, and they are usually very similar. Explorers like <a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a> show you one well-connected node's view, which is what apps such as <a href="/">Bitcoin Insight</a> display on your iPhone.</p>
+
+      <h2 id="fees">Fees, block space and sat/vB</h2>
+      <p>Because block space is limited, transactions compete for it with fees. Miners are economically rational: they fill each block with the transactions that pay the most <strong>per unit of size</strong>, not the largest total fee. So what matters is the <em>fee rate</em>, measured in <strong>satoshis per virtual byte (sat/vB)</strong>.</p>
+      <p>A virtual byte (vByte) is Bitcoin's way of measuring how much block space a transaction takes up after the SegWit weight discount. A simple transaction might be ~140 vBytes; a complex one with many inputs can be much larger. Your total fee is roughly:</p>
+      <ul>
+        <li><strong>Fee rate (sat/vB)</strong> × <strong>transaction size (vBytes)</strong> = total fee in satoshis.</li>
+        <li>A 140 vByte transaction at 10 sat/vB costs about 1,400 sats; the same transaction at 50 sat/vB costs about 7,000 sats.</li>
+      </ul>
+      <p>This is why a small, well-constructed transaction can confirm cheaply even when the network is busy: you are paying for space, not for the amount of Bitcoin you send. For a deeper look at picking the right number, see our guide on <a href="/guides/good-bitcoin-fee-sat-vb/">what a good sat/vB fee is</a>.</p>
+
+      <h2 id="congestion">What "congestion" means</h2>
+      <p>Congestion is simply the state where transactions arrive faster than blocks can clear them, so the mempool grows. When the backlog builds up, the minimum fee rate needed to make it into the next block rises, sometimes sharply during a popular mint or a market spike.</p>
+      <p>You can recognize congestion by three signals working together:</p>
+      <ul>
+        <li><strong>A large mempool size</strong>, measured in vMB (more on that below).</li>
+        <li><strong>High recommended fees</strong>, the low/medium/high bands all climb.</li>
+        <li><strong>Many blocks-to-clear</strong>, the backlog would take several blocks to drain.</li>
+      </ul>
+      <p>When the mempool is nearly empty, the opposite is true: even the lowest fee band confirms within a block or two, and you can send cheaply. Watching this trend is the single most useful habit for timing a transaction.</p>
+
+      <h2 id="bands">Reading the fee bands</h2>
+      <p>Most mempool tools, including Bitcoin Insight, summarize the queue into three fee bands. They are estimates of the fee rate likely to get your transaction confirmed in different time windows:</p>
+      <ul>
+        <li><strong>Low priority</strong>, the cheapest rate that should still confirm eventually. Good when you are not in a hurry and the mempool is calm.</li>
+        <li><strong>Medium priority</strong>, a balanced rate aimed at confirmation within the next few blocks.</li>
+        <li><strong>High priority</strong>, the rate aimed at getting into the very next block. Use it when congestion is high or the payment is time-sensitive.</li>
+      </ul>
+      <p>The gap between the bands tells you a lot. When low, medium and high are close together, the network is quiet and overpaying buys you little. When they spread far apart, the mempool is busy and choosing the right band can save real money.</p>
+
+      <h2 id="vmb">vMB and blocks-to-clear</h2>
+      <p>Mempool size is reported in <strong>virtual megabytes (vMB)</strong>, the total virtual size of all waiting transactions. A single Bitcoin block holds about 4 million weight units, which usually works out to roughly 1.5 to 2 vMB of transactions.</p>
+      <p>From that you get <strong>blocks-to-clear</strong>: the mempool size divided by one block's worth of space. It is the most intuitive measure of backlog:</p>
+      <ul>
+        <li>If the mempool holds about 2 vMB, it is roughly <strong>one block deep</strong>, your medium-fee transaction should confirm soon.</li>
+        <li>If it holds about 6 vMB, that is roughly <strong>three blocks deep</strong>, or about 30 minutes of backlog at the typical ten-minute block time.</li>
+        <li>A backlog of dozens of blocks means low-fee transactions could wait hours, so a higher band is worth it if you need speed.</li>
+      </ul>
+      <p>Remember these are estimates. Block times vary, and a sudden burst of high-fee transactions can reshuffle the queue. Treat blocks-to-clear as a weather forecast, not a guarantee.</p>
+
+      <h2 id="iphone">Watching the mempool on iPhone</h2>
+      <p><a href="/">Bitcoin Insight</a> puts all of this on your iPhone in one calm, native view. It reads the public mempool.space API and turns it into a glanceable dashboard:</p>
+      <ul>
+        <li><strong>Live dashboard</strong>, mempool size, low/medium/high <a href="/guides/good-bitcoin-fee-sat-vb/">sat/vB fees</a>, block height, hashrate, difficulty, even <a href="/guides/what-is-moscow-time/">Moscow time</a>, all updating in real time.</li>
+        <li><strong>Built-in block explorer</strong>, search any transaction, block or address and watch the live latest-blocks feed to see the queue drain.</li>
+        <li><strong>Interactive fee &amp; price charts</strong>, finger-scrubbable history so you can see whether congestion is rising or fading before you send.</li>
+        <li><strong>Home &amp; Lock Screen widgets</strong>, keep the mempool and current fees one glance away.</li>
+      </ul>
+      <p>It is free and open source under the MIT license, with no accounts, no ads and no tracking, the only paid extra is a one-time unlock for the widgets. If you have been using the website, see why a <a href="/guides/official-mempool-app-iphone/">native mempool app for iPhone</a> makes the difference.</p>
+
+      <div class="callout">
+        <strong>Putting it together:</strong> when the mempool is small and the fee bands are close, send on the low band. When it is several blocks deep and the bands spread out, pick medium or high, or simply wait for the next quiet window.
+      </div>
+
+      <h2 id="faq">FAQ</h2>
+      <h3>What does mempool congestion mean?</h3>
+      <p>Congestion means more transactions are arriving than the next few blocks can confirm, so they pile up in the mempool. Miners pick the highest fee-rate transactions first, so when the backlog grows you need a higher sat/vB fee to confirm quickly, and low-fee transactions may wait hours or longer.</p>
+      <h3>What do vMB and blocks-to-clear mean?</h3>
+      <p>A block holds about 4 million weight units, often shown as roughly 1.5 to 2 vMB of transaction data. Mempool size is measured in virtual megabytes (vMB), and blocks-to-clear is simply that size divided by one block. If the mempool holds 6 vMB, it is about three blocks deep, or roughly 30 minutes of backlog at the typical ten-minute block time.</p>
+      <h3>How do I watch the Bitcoin mempool on my iPhone?</h3>
+      <p>Use Bitcoin Insight, a native iOS app built on the public mempool.space API. Its dashboard shows live mempool size, low/medium/high sat/vB fee bands and block height, the block explorer lets you track any transaction, and the fee chart shows how congestion is trending. It is free, open source, with no accounts or ads.</p>
+    </article>
+
+    <div class="cta-card">
+      <h2>Read the mempool at a glance.</h2>
+      <p>Live mempool, fee bands, a block explorer and charts, free, on your iPhone.</p>
+      <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+
+    <nav class="related" aria-label="Related guides">
+      <h2>Keep reading</h2>
+      <ul>
+        <li><a href="/guides/official-mempool-app-iphone/">Official mempool app for iPhone <span>Is there one, and what to use instead.</span></a></li>
+        <li><a href="/guides/good-bitcoin-fee-sat-vb/">What's a good Bitcoin fee (sat/vB)? <span>Pick the cheapest moment to send.</span></a></li>
+        <li><a href="/guides/what-is-moscow-time/">What is Moscow time? <span>The sats-per-dollar clock explained.</span></a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../../assets/logo.png" alt="Bitcoin Insight logo" width="30" height="30">
+        Bitcoin Insight
+      </div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/guides/">Guides</a>
+        <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener">App Store</a>
+        <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="year">2026</span> Bitcoin Insight · Free &amp; open source under the MIT License. Not affiliated with Apple or mempool.space.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navBar = document.getElementById('navBar');
+    const onScroll = () => navBar.classList.toggle('scrolled', window.scrollY > 16);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+</html>

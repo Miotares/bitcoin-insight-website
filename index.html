@@ -3,36 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bitcoin Insight – Mempool &amp; Wallet App for iOS</title>
-  <meta name="description" content="A free, open-source iOS app for live Bitcoin mempool &amp; network data, watch-only wallets, and Home &amp; Lock Screen widgets.">
-  <meta name="keywords" content="Bitcoin, Bitcoin mempool, mempool.space, Bitcoin app iOS, watch-only wallet, xpub ypub zpub, Bitcoin widgets, Lightning Network, Bitcoin halving, hashrate, block height, Moscow time, Bitcoin network stats, free Bitcoin app, open source">
+  <title>Bitcoin Insight – Mempool, Fees &amp; Network Data App for iPhone</title>
+  <meta name="description" content="The native iOS mempool app: live network fees, blocks, hashrate, a full block explorer and watch-only wallets with Face ID. Free, open source, no subscription.">
   <meta name="author" content="Merlin Kreuzkam">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
   <meta name="theme-color" content="#000000">
   <meta name="apple-mobile-web-app-title" content="Bitcoin Insight">
+  <!-- iOS Safari native install banner -->
+  <meta name="apple-itunes-app" content="app-id=6753660088">
   <link rel="canonical" href="https://bitcoin-insight.app/">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Bitcoin Insight">
   <meta property="og:locale" content="en_US">
-  <meta property="og:title" content="Bitcoin Insight – The Bitcoin Network in Your Pocket">
-  <meta property="og:description" content="Live Bitcoin mempool &amp; network data, watch-only wallets, and Home &amp; Lock Screen widgets. A free, open-source iOS app.">
+  <meta property="og:title" content="Bitcoin Insight – The native Bitcoin mempool app for iPhone">
+  <meta property="og:description" content="Live mempool, network fees, a built-in block explorer, interactive charts and watch-only wallets with Face ID. Free, open source, no subscription.">
   <meta property="og:url" content="https://bitcoin-insight.app/">
   <meta property="og:image" content="https://bitcoin-insight.app/assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Bitcoin Insight app icon">
+  <meta property="og:image:alt" content="Bitcoin Insight – the native Bitcoin mempool app for iPhone">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Bitcoin Insight – The Bitcoin Network in Your Pocket">
-  <meta name="twitter:description" content="Live Bitcoin mempool &amp; network data, watch-only wallets, and widgets. A free, open-source iOS app.">
+  <meta name="twitter:title" content="Bitcoin Insight – The native Bitcoin mempool app for iPhone">
+  <meta name="twitter:description" content="Live mempool, fees, a block explorer, interactive charts and watch-only wallets with Face ID. Free, open source, no subscription.">
   <meta name="twitter:image" content="https://bitcoin-insight.app/assets/og-image.png">
-  <meta name="twitter:image:alt" content="Bitcoin Insight app icon">
+  <meta name="twitter:image:alt" content="Bitcoin Insight – the native Bitcoin mempool app for iPhone">
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Preload the hero image only on screens where it is actually shown -->
+  <link rel="preload" as="image" href="screenshots/01-dashboard.webp" media="(min-width: 561px)" fetchpriority="high">
 
   <!-- Structured data -->
   <script type="application/ld+json">
@@ -44,14 +49,18 @@
         "@id": "https://bitcoin-insight.app/#org",
         "name": "Bitcoin Insight",
         "url": "https://bitcoin-insight.app/",
-        "logo": "https://bitcoin-insight.app/assets/logo.png"
+        "logo": "https://bitcoin-insight.app/assets/logo.png",
+        "sameAs": [
+          "https://github.com/Miotares/bitcoin-insight",
+          "https://apps.apple.com/app/id6753660088"
+        ]
       },
       {
         "@type": "WebSite",
         "@id": "https://bitcoin-insight.app/#website",
         "url": "https://bitcoin-insight.app/",
         "name": "Bitcoin Insight",
-        "description": "A free, open-source iOS app for live Bitcoin mempool and network data, watch-only wallets, and widgets.",
+        "description": "The native iOS mempool app for live Bitcoin network data, a built-in block explorer, interactive charts and watch-only wallets.",
         "inLanguage": "en",
         "publisher": { "@id": "https://bitcoin-insight.app/#org" }
       },
@@ -59,22 +68,110 @@
         "@type": ["SoftwareApplication", "MobileApplication"],
         "@id": "https://bitcoin-insight.app/#app",
         "name": "Bitcoin Insight",
-        "operatingSystem": "iOS",
+        "operatingSystem": "iOS 17.0 or later",
         "applicationCategory": "FinanceApplication",
-        "description": "Bitcoin Insight turns live mempool and on-chain data into a clean, glanceable dashboard, plus watch-only wallets and Home and Lock Screen widgets. Free and fully open source.",
+        "applicationSubCategory": "Bitcoin / Cryptocurrency",
+        "description": "Bitcoin Insight is the native iOS mempool app: a live Bitcoin network dashboard, interactive scrubbable charts for every metric, a built-in block explorer to search transactions, blocks and addresses, and watch-only wallets protected by Face ID. Free and fully open source, with an optional one-time unlock for Home and Lock Screen widgets, no subscription.",
         "url": "https://bitcoin-insight.app/",
-        "downloadUrl": "https://apps.apple.com/de/app/bitcoin-insight-mempool/id6753660088",
+        "downloadUrl": "https://apps.apple.com/app/id6753660088",
+        "installUrl": "https://apps.apple.com/app/id6753660088",
         "image": "https://bitcoin-insight.app/assets/og-image.png",
+        "screenshot": [
+          "https://bitcoin-insight.app/screenshots/01-dashboard.png",
+          "https://bitcoin-insight.app/screenshots/11-explore.png",
+          "https://bitcoin-insight.app/screenshots/14-chart-price.png",
+          "https://bitcoin-insight.app/screenshots/21-wallet.png",
+          "https://bitcoin-insight.app/screenshots/16-wallet-lock.png",
+          "https://bitcoin-insight.app/screenshots/02-network.png"
+        ],
         "author": { "@id": "https://bitcoin-insight.app/#org" },
         "publisher": { "@id": "https://bitcoin-insight.app/#org" },
-        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "offers": [
+          {
+            "@type": "Offer",
+            "name": "Bitcoin Insight (free app)",
+            "price": "0",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "name": "Widgets, one-time lifetime unlock (no subscription)",
+            "price": "4.99",
+            "priceCurrency": "EUR",
+            "category": "In-app purchase"
+          }
+        ],
         "featureList": [
-          "Live Bitcoin mempool and network dashboard",
-          "Block, mempool, supply and halving detail views with charts",
-          "Watch-only wallets via xpub, ypub, zpub or a single address",
-          "Home and Lock Screen widgets",
-          "Privacy-first: no accounts, no tracking, no ads",
+          "Live Bitcoin mempool and network dashboard (price, block height, fees, hashrate, difficulty, Moscow time, supply, halving, Lightning)",
+          "Interactive, finger-scrubbable historical charts for every metric, with price history back to 2011 in 19 currencies",
+          "Built-in block explorer: search any transaction, block or address with a live latest-blocks feed",
+          "Watch-only wallets via xpub, ypub, zpub or a single address, private keys are never accepted",
+          "Security: Face ID / Touch ID / Optic ID lock and hide-balances privacy, with on-device Keychain storage",
+          "Home and Lock Screen widgets (optional one-time unlock, no subscription)",
+          "Privacy-first: no accounts, no tracking, no ads, data from the public mempool.space API",
           "Open source under the MIT license"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://bitcoin-insight.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is there an official mempool app for iPhone?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "mempool.space offers its explorer on the web and as an Android app, but there's no official native mempool app for iOS. Bitcoin Insight is a native iPhone app that brings the same live mempool, fee and network data, plus a built-in block explorer, to iOS, using the public mempool.space API. It's independent and not affiliated with mempool.space."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How is it different from the mempool.space website?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Bitcoin Insight is a purpose-built native app rather than a website. You get a glanceable dashboard, finger-scrubbable charts, Home and Lock Screen widgets, watch-only wallet tracking with Face ID, and a tracking-free explorer, all tuned for iPhone. It uses mempool.space's public data as its source."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it free? Is there a subscription?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The app is completely free with no subscription, no accounts and no ads. The dashboard, all charts, the block explorer, watch-only wallets and every security feature are free. The only paid item is an optional one-time lifetime unlock (about €4.99) for the Home and Lock Screen widgets, pay once, yours forever."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is a watch-only wallet, and is it safe?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A watch-only wallet tracks balances and transactions using only a public key (xpub, ypub or zpub) or a single address, never a private key. Bitcoin Insight actively rejects private keys and seed phrases, derives addresses on your device, and stores wallets in the iOS Keychain. It can never move your coins, so there's no spending risk."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What is Moscow time?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Moscow time is how many satoshis equal one unit of your fiat currency (100,000,000 ÷ the Bitcoin price). As Bitcoin rises, the number of sats per dollar or euro falls. Bitcoin Insight shows Moscow time live on the dashboard and as an interactive chart in all 19 supported currencies."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What's a good Bitcoin fee (sat/vB)?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "It depends on how busy the mempool is. Bitcoin Insight works as a live fee tracker, showing low, medium and high recommendations in sat/vB plus a chart of how fees have trended, so you can pick the cheapest moment to send. When the mempool is quiet you can often pay 1–2 sat/vB; when it's congested, higher fees confirm faster."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it need an account or collect my data?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. There's no sign-up or login, no analytics and no tracking. Everything you enter stays on your device, network data comes straight from the public mempool.space API, and the app is fully open source so anyone can verify it."
+            }
+          }
         ]
       }
     ]
@@ -97,7 +194,7 @@
       --border-strong: rgba(255, 255, 255, 0.14);
       --text: #f5f5f7;
       --text-muted: #98989f;
-      --text-dim: #6a6a70;
+      --text-dim: #8a8a91; /* >=4.5:1 on #000 for WCAG AA (still dimmer than --text-muted) */
       --accent: #f7931a;
       --accent-2: #ffb74d;
       --green: #30d158;
@@ -166,6 +263,21 @@
       padding: 0 24px;
     }
 
+    /* Skip-to-content link (visible on keyboard focus) */
+    .skip-link {
+      position: absolute;
+      left: 12px; top: -60px;
+      z-index: 300;
+      background: var(--accent);
+      color: #1a1205;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 12px; }
+
     /* anchor jumps land below the sticky nav */
     section[id], header[id] { scroll-margin-top: 84px; }
 
@@ -184,7 +296,7 @@
 
     .section-head {
       text-align: center;
-      max-width: 640px;
+      max-width: 660px;
       margin: 0 auto 56px;
     }
     .section-head h2 {
@@ -238,6 +350,7 @@
       letter-spacing: -0.02em;
       color: var(--text);
       text-decoration: none;
+      flex-shrink: 0;
     }
     .logo:hover { color: var(--text); }
     .logo img {
@@ -248,7 +361,7 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 28px;
       list-style: none;
     }
     .nav-links a {
@@ -276,6 +389,7 @@
     .nav-links a:hover::after { transform: scaleX(0.55); opacity: 0.6; }
     .nav-links a.active { color: var(--accent); }
     .nav-links a.active::after { transform: scaleX(1); opacity: 1; }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
     .nav-cta {
       display: inline-flex;
       align-items: center;
@@ -288,8 +402,25 @@
       font-weight: 600;
       text-decoration: none;
       transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
     }
     .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(247,147,26,0.25); }
+
+    /* Mobile menu toggle */
+    .nav-toggle {
+      display: none;
+      width: 42px; height: 42px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      border-radius: 11px;
+      color: var(--text);
+      cursor: pointer;
+      align-items: center; justify-content: center;
+    }
+    .nav-toggle svg { display: block; }
+    .nav-toggle .icon-close { display: none; }
+    .nav-toggle[aria-expanded="true"] .icon-open { display: none; }
+    .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
 
     /* ───────── Buttons ───────── */
     .btn {
@@ -317,29 +448,29 @@
 
     /* ───────── Hero ───────── */
     .hero {
-      padding: 80px 0 60px;
+      padding: 76px 0 56px;
       display: grid;
       grid-template-columns: 1.05fr 0.95fr;
       gap: 40px;
       align-items: center;
     }
     .hero-copy h1 {
-      font-size: clamp(2.4rem, 5.2vw, 4rem);
+      font-size: clamp(2.3rem, 5vw, 3.85rem);
       font-weight: 800;
       letter-spacing: -0.035em;
       line-height: 1.05;
-      margin: 20px 0 22px;
+      margin: 18px 0 18px;
     }
     .hero-copy p.lede {
-      font-size: 1.18rem;
+      font-size: 1.15rem;
       color: var(--text-muted);
-      max-width: 520px;
-      line-height: 1.65;
-      margin-bottom: 32px;
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 30px;
     }
     .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
     .hero-trust {
-      margin-top: 26px;
+      margin-top: 24px;
       display: flex;
       flex-wrap: wrap;
       gap: 10px 22px;
@@ -369,6 +500,7 @@
       z-index: 1;
       width: 300px;
       max-width: 78%;
+      height: auto;
       filter: drop-shadow(0 30px 60px rgba(0,0,0,0.6));
       animation: floatY 6s ease-in-out infinite;
     }
@@ -378,36 +510,74 @@
     }
 
     /* ───────── Metric chips strip ───────── */
-    .metrics { padding: 40px 0 30px; }
+    .metrics { padding: 34px 0 26px; }
     .metric-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 14px;
     }
     .metric-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius-inner);
-      padding: 18px 18px 16px;
+      padding: 16px 18px 14px;
       transition: border-color 0.25s, background 0.25s, transform 0.25s;
     }
     .metric-card:hover { border-color: var(--border-strong); background: var(--surface-strong); transform: translateY(-3px); }
     .metric-card .label {
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       font-weight: 600;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--text-dim);
     }
     .metric-card .name {
-      font-size: 1.02rem;
+      font-size: 0.98rem;
       font-weight: 600;
-      margin-top: 8px;
+      margin-top: 7px;
       letter-spacing: -0.01em;
     }
 
+    /* ───────── Positioning band (native iOS mempool app) ───────── */
+    .position { padding: 40px 0 10px; }
+    .position-card {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(150deg, rgba(247,147,26,0.10), rgba(255,255,255,0.03));
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-card);
+      padding: 40px 38px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    .position-card h2 {
+      font-size: clamp(1.5rem, 3.2vw, 2.1rem);
+      font-weight: 750;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .position-card p { color: var(--text-muted); font-size: 1.02rem; }
+    .position-aside {
+      display: grid;
+      gap: 12px;
+    }
+    .pos-row {
+      display: flex; align-items: center; gap: 12px;
+      background: rgba(0,0,0,0.35);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.92rem;
+    }
+    .pos-row .x { color: var(--text-dim); }
+    .pos-row .ok { color: var(--green); }
+    .pos-row svg { flex-shrink: 0; }
+
     /* ───────── Features bento ───────── */
-    .features { padding: 90px 0; }
+    .features { padding: 86px 0; }
     .bento {
       display: grid;
       grid-template-columns: repeat(12, 1fr);
@@ -439,8 +609,165 @@
     }
     .feature-card p { color: var(--text-muted); font-size: 0.96rem; line-height: 1.6; }
 
+    /* ───────── Generic split section (Explore / Charts / Wallets / Security) ───────── */
+    .split { padding: 84px 0; }
+    .split-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: center;
+    }
+    .split.reverse .split-inner { direction: rtl; }
+    .split.reverse .split-inner > * { direction: ltr; }
+    .split-copy h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 14px 0 16px;
+    }
+    .split-copy p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 14px; }
+    .point-list {
+      list-style: none;
+      display: grid;
+      gap: 13px;
+      margin-top: 22px;
+    }
+    .point-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 0.98rem;
+      color: var(--text);
+    }
+    .point-list li svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 9px;
+      margin-top: 26px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem; font-weight: 600;
+    }
+    .pill.green { background: rgba(48, 209, 88, 0.1); border: 1px solid rgba(48, 209, 88, 0.3); color: var(--green); }
+    .pill.orange { background: rgba(247,147,26,0.1); border: 1px solid rgba(247,147,26,0.3); color: var(--accent); }
+
+    .visual-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 540px;
+    }
+    .visual-wrap::before {
+      content: '';
+      position: absolute;
+      width: 440px; height: 440px;
+      background: radial-gradient(circle, rgba(247,147,26,0.15), transparent 64%);
+      filter: blur(36px);
+      pointer-events: none;
+    }
+    .phone-shot {
+      position: relative; z-index: 1;
+      width: 290px; max-width: 80%; height: auto;
+      filter: drop-shadow(0 28px 56px rgba(0,0,0,0.62));
+    }
+
+    /* (interim device mockups removed; real screenshots are now used) */
+
+    /* ───────── Widgets showcase ───────── */
+    .widgets { padding: 86px 0; }
+    .widgets-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+    .widget-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    .wtile {
+      background: linear-gradient(165deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      min-height: 132px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+    .wtile .wlabel {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--text-dim);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .wtile .wlabel .b { color: var(--accent); }
+    .wtile .wbig {
+      font-family: var(--font-rounded);
+      font-weight: 800;
+      font-size: 1.85rem;
+      letter-spacing: -0.02em;
+      margin-top: auto;
+      line-height: 1.05;
+    }
+    .wtile .wsub { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
+    .wtile.feerow .frow { display: flex; justify-content: space-between; font-size: 0.78rem; margin-top: 7px; }
+    .wtile.feerow .frow .v { font-weight: 700; }
+    .wbar { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.12); margin-top: 12px; overflow: hidden; }
+    .wbar > i { display: block; height: 100%; width: 54%; background: var(--accent); border-radius: 3px; }
+
+    .widgets-copy h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+      margin: 14px 0 16px;
+    }
+    .widgets-copy p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 14px; }
+
+    /* ───────── Comparison ───────── */
+    .compare { padding: 60px 0 86px; }
+    .compare-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .compare-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 640px;
+    }
+    .compare-table th, .compare-table td {
+      padding: 16px 18px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+    .compare-table thead th {
+      font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-dim); font-weight: 600;
+      border-bottom: 1px solid var(--border-strong);
+    }
+    .compare-table thead th.us {
+      color: var(--accent);
+    }
+    .compare-table td.feat { color: var(--text); font-weight: 500; }
+    .compare-table td.cell { color: var(--text-muted); }
+    .compare-table col.col-us, .compare-table th.us, .compare-table td.us {
+      background: rgba(247,147,26,0.06);
+    }
+    .compare-table td.us {
+      color: var(--text);
+      border-left: 1px solid rgba(247,147,26,0.18);
+      border-right: 1px solid rgba(247,147,26,0.18);
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:last-child td.us { border-bottom: 1px solid rgba(247,147,26,0.18); border-radius: 0 0 14px 14px; }
+    .compare-table thead th.us { border-radius: 14px 14px 0 0; border-top: 1px solid rgba(247,147,26,0.18); }
+    .ci-yes { color: var(--green); font-weight: 600; }
+    .ci-no { color: var(--text-dim); }
+    .compare-note { text-align: center; color: var(--text-dim); font-size: 0.82rem; margin-top: 20px; }
+
     /* ───────── Screenshots carousel ───────── */
-    .screenshots { padding: 60px 0 90px; position: relative; }
+    .screenshots { padding: 60px 0 86px; position: relative; }
     .screenshots::before {
       content: '';
       position: absolute;
@@ -503,136 +830,39 @@
       z-index: -1;
     }
     .screen-frame:hover { transform: translateY(-10px); }
+    .screen-frame picture { display: block; }
     .screen-frame img { width: 100%; height: auto; display: block; filter: drop-shadow(0 22px 44px rgba(0,0,0,0.6)); }
 
-    /* ───────── Wallets ───────── */
-    .wallets { padding: 90px 0; }
-    .wallets-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 56px;
-      align-items: center;
+    /* ───────── FAQ ───────── */
+    .faq { padding: 40px 0 90px; }
+    .faq-list { max-width: 800px; margin: 0 auto; display: grid; gap: 12px; }
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-inner);
+      overflow: hidden;
     }
-    .wallets-copy h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      margin: 14px 0 16px;
-    }
-    .wallets-copy p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 14px; }
-    .wallet-points {
+    .faq-item[open] { border-color: var(--border-strong); background: var(--surface-strong); }
+    .faq-item summary {
       list-style: none;
-      display: grid;
-      gap: 13px;
-      margin-top: 22px;
-    }
-    .wallet-points li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      font-size: 0.98rem;
+      cursor: pointer;
+      padding: 20px 22px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      font-size: 1.02rem; font-weight: 600;
       color: var(--text);
     }
-    .wallet-points svg { color: var(--accent); flex-shrink: 0; margin-top: 3px; }
-    .wallet-free {
-      display: inline-flex; align-items: center; gap: 9px;
-      margin-top: 26px;
-      padding: 9px 16px;
-      border-radius: 999px;
-      background: rgba(48, 209, 88, 0.1);
-      border: 1px solid rgba(48, 209, 88, 0.3);
-      color: var(--green);
-      font-size: 0.85rem; font-weight: 600;
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary .chev {
+      flex-shrink: 0; color: var(--text-muted);
+      transition: transform 0.25s;
     }
-    .wallet-visual {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 540px;
-    }
-    .wallet-visual::before {
-      content: '';
-      position: absolute;
-      width: 460px; height: 460px;
-      background: radial-gradient(circle, rgba(247,147,26,0.15), transparent 64%);
-      filter: blur(36px);
-      pointer-events: none;
-    }
-    .wallet-phone {
-      position: absolute;
-      width: 234px;
-      max-width: 56%;
-      filter: drop-shadow(0 28px 56px rgba(0,0,0,0.62));
-    }
-    .wallet-phone.back  { transform: translate(-82px, -22px) rotate(-5deg) scale(0.92); opacity: 0.9; z-index: 0; }
-    .wallet-phone.front { transform: translate(82px, 26px) rotate(3deg); z-index: 1; }
-
-    /* ───────── Widgets showcase ───────── */
-    .widgets { padding: 90px 0; }
-    .widgets-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 50px;
-      align-items: center;
-    }
-    .widget-gallery {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-    .wtile {
-      background: linear-gradient(165deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 18px;
-      min-height: 132px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
-    }
-    .wtile .wlabel {
-      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--text-dim);
-      display: flex; align-items: center; gap: 6px;
-    }
-    .wtile .wlabel .b { color: var(--accent); }
-    .wtile .wbig {
-      font-family: var(--font-rounded);
-      font-weight: 800;
-      font-size: 1.85rem;
-      letter-spacing: -0.02em;
-      margin-top: auto;
-      line-height: 1.05;
-    }
-    .wtile .wsub { font-size: 0.72rem; color: var(--text-muted); margin-top: 2px; }
-    .wtile.feerow .frow { display: flex; justify-content: space-between; font-size: 0.78rem; margin-top: 7px; }
-    .wtile.feerow .frow .v { font-weight: 700; }
-    .wbar { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.12); margin-top: 12px; overflow: hidden; }
-    .wbar > i { display: block; height: 100%; width: 54%; background: var(--accent); border-radius: 3px; }
-
-    .widgets-copy h2 {
-      font-size: clamp(1.8rem, 4vw, 2.5rem);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.12;
-      margin: 14px 0 16px;
-    }
-    .widgets-copy p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 14px; }
-    .widget-meta {
-      display: inline-flex; align-items: center; gap: 10px;
-      margin-top: 14px;
-      padding: 9px 16px;
-      border-radius: 999px;
-      background: rgba(247,147,26,0.1);
-      border: 1px solid rgba(247,147,26,0.3);
-      color: var(--accent);
-      font-size: 0.85rem; font-weight: 600;
-    }
+    .faq-item[open] summary .chev { transform: rotate(180deg); color: var(--accent); }
+    .faq-item .faq-body { padding: 0 22px 20px; color: var(--text-muted); font-size: 0.96rem; line-height: 1.65; }
+    .faq-item .faq-body a { color: var(--accent); text-decoration: none; }
+    .faq-item .faq-body a:hover { text-decoration: underline; }
 
     /* ───────── Open source CTA ───────── */
-    .opensource { padding: 40px 0 100px; text-align: center; }
+    .opensource { padding: 30px 0 100px; text-align: center; }
     .os-card {
       max-width: 680px;
       margin: 0 auto;
@@ -724,47 +954,80 @@
 
     /* ───────── Responsive ───────── */
     @media (max-width: 900px) {
+      .nav-links {
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: rgba(8,8,10,0.96);
+        backdrop-filter: saturate(160%) blur(20px);
+        -webkit-backdrop-filter: saturate(160%) blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 8px 24px 16px;
+        display: none;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 13px 0; font-size: 1rem; border-bottom: 1px solid var(--border); }
+      .nav-links a::after { display: none; }
+      .nav-links li:last-child a { border-bottom: none; }
+      .nav-toggle { display: flex; }
+
       .hero { grid-template-columns: 1fr; text-align: center; padding: 36px 0 24px; gap: 30px; }
       .hero-copy p.lede { margin-left: auto; margin-right: auto; }
       .hero-buttons { justify-content: center; }
       .hero-trust { justify-content: center; }
-      /* copy first, phone below — keeps the headline + CTA above the fold */
       .hero-visual { order: 0; margin-top: 4px; }
       .hero-visual::before { width: 320px; height: 320px; }
       .hero-phone { width: 270px; max-width: 62%; }
-      .metric-grid { grid-template-columns: repeat(2, 1fr); }
+
+      .position-card { grid-template-columns: 1fr; gap: 24px; padding: 32px 26px; text-align: center; }
+      .position-aside { max-width: 380px; margin: 0 auto; }
+      .pos-row { text-align: left; }
+
       .feature-card, .feature-card.wide { grid-column: span 6; }
+
+      .split-inner { grid-template-columns: 1fr; gap: 30px; }
+      .split.reverse .split-inner { direction: ltr; }
+      .split-copy { text-align: center; }
+      .point-list { text-align: left; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .pill { margin-left: auto; margin-right: auto; }
+      /* Mobile: show only the top of the device and fade it out, so it
+         peeks up behind the copy instead of filling the screen. */
+      .visual-wrap {
+        order: -1;
+        min-height: 0;
+        height: 320px;
+        align-items: flex-start;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom, #000 56%, transparent 100%);
+                mask-image: linear-gradient(to bottom, #000 56%, transparent 100%);
+      }
+      .visual-wrap .screen-frame { width: 250px; }
+      .visual-wrap .screen-frame::before { display: none; }
+
       .widgets-inner { grid-template-columns: 1fr; gap: 36px; }
       .widgets-copy { text-align: center; }
-      .widget-meta { margin-left: auto; margin-right: auto; }
-      .wallets-inner { grid-template-columns: 1fr; gap: 24px; }
-      .wallets-copy { text-align: center; }
-      .wallet-points { text-align: left; max-width: 420px; margin-left: auto; margin-right: auto; }
-      .wallet-free { margin-left: auto; margin-right: auto; }
-      .wallet-visual { order: -1; min-height: 460px; }
-      .wallet-phone { width: 200px; }
-      .wallet-phone.back  { transform: translate(-68px, -18px) rotate(-5deg) scale(0.92); }
-      .wallet-phone.front { transform: translate(68px, 22px) rotate(3deg); }
+      .widgets-copy .pill { margin-left: auto; margin-right: auto; }
     }
     @media (max-width: 560px) {
       .container { padding: 0 18px; }
-      .nav-links { display: none; }
       .hero { padding: 28px 0 20px; gap: 26px; }
-      .hero-copy h1 { font-size: 2.2rem; }
-      .hero-copy p.lede { font-size: 1.05rem; }
+      .hero-copy h1 { font-size: 2.15rem; }
+      .hero-copy p.lede { font-size: 1.03rem; }
       .btn { width: 100%; }
       .hero-buttons { flex-direction: column; }
-      /* drop the hero device entirely on phones — copy + CTA only */
+      /* drop the hero device entirely on phones, copy + CTA only */
       .hero-visual { display: none; }
       .bento { grid-template-columns: 1fr; }
       .feature-card, .feature-card.wide { grid-column: span 1; }
-      .features, .widgets, .wallets { padding: 60px 0; }
+      .features, .widgets, .split { padding: 56px 0; }
       .screen-frame { width: 220px; }
       .scroll-btn { width: 38px; height: 38px; }
-      .wallet-visual { min-height: 400px; }
-      .wallet-phone { width: 168px; }
-      .wallet-phone.back  { transform: translate(-52px, -14px) rotate(-5deg) scale(0.92); }
-      .wallet-phone.front { transform: translate(52px, 18px) rotate(3deg); }
+      .visual-wrap { height: 290px; }
+      .visual-wrap .screen-frame { width: 232px; }
+      .widget-gallery { grid-template-columns: 1fr; }
+      .wtile { min-height: 110px; }
       .os-card { padding: 40px 24px; }
       .modal { padding: 28px 22px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
@@ -779,70 +1042,103 @@
 </head>
 <body>
 
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <div class="bg-glow"></div>
 
   <!-- ───────── Nav ───────── -->
   <div class="nav-bar" id="navBar">
     <nav>
       <a href="#" class="logo" aria-label="Bitcoin Insight">
-        <img src="assets/logo.png" alt="Bitcoin Insight">
+        <img src="assets/logo.png" alt="Bitcoin Insight app icon" width="34" height="34">
         Bitcoin Insight
       </a>
-      <ul class="nav-links">
+      <ul class="nav-links" id="navLinks">
         <li><a href="#features">Features</a></li>
-        <li><a href="#wallets">Wallets</a></li>
+        <li><a href="#explore">Explorer</a></li>
+        <li><a href="#charts">Charts</a></li>
+        <li><a href="#wallets">Wallet</a></li>
         <li><a href="#widgets">Widgets</a></li>
-        <li><a href="#screenshots">Screenshots</a></li>
+        <li><a href="#faq">FAQ</a></li>
         <li><a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener" data-spy="open-source">GitHub</a></li>
       </ul>
-      <a href="https://apps.apple.com/de/app/bitcoin-insight-mempool/id6753660088" target="_blank" rel="noopener" class="nav-cta">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-        App Store
-      </a>
+      <div class="nav-right">
+        <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="nav-cta">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+          <svg class="icon-open" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg class="icon-close" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+        </button>
+      </div>
     </nav>
   </div>
 
-  <div class="container">
+  <main class="container" id="main">
 
     <!-- ───────── Hero ───────── -->
     <header class="hero">
       <div class="hero-copy">
         <span class="eyebrow"><span class="dot"></span> Free · Open Source · iOS</span>
-        <h1>The Bitcoin <span class="accent-text">network</span>, right on your phone.</h1>
-        <p class="lede">Bitcoin Insight turns live mempool and on-chain data into a clean, glanceable dashboard, plus watch-only wallets that track your balance and transactions. Completely free, beautifully designed, and fully open source.</p>
+        <h1>The native Bitcoin <span class="accent-text">mempool</span> app for iPhone.</h1>
+        <p class="lede">Live mempool, network fees and the whole Bitcoin network in one calm, glanceable app, plus a built-in block explorer, interactive charts back to 2011, and watch-only wallets with Face ID. Free, open source, no accounts, no subscription.</p>
         <div class="hero-buttons">
-          <a href="https://apps.apple.com/de/app/bitcoin-insight-mempool/id6753660088" target="_blank" rel="noopener" class="btn btn-primary">
+          <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="btn btn-primary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
             Download on the App Store
           </a>
           <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener" class="btn btn-secondary">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
-            View Source
+            View on GitHub
           </a>
         </div>
         <div class="hero-trust">
           <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Free app</span>
           <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No accounts</span>
           <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No tracking</span>
-          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No ads</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> No subscription</span>
         </div>
       </div>
       <div class="hero-visual">
-        <img class="hero-phone" src="screenshots/01-dashboard.png" alt="Bitcoin Insight dashboard showing live BTC price, block height, mempool, fees and more" loading="eager">
+        <!-- SCREENSHOT: refresh 01-dashboard.png with the current 4-tab build (Dashboard · Explore · Wallet · Settings) -->
+        <picture>
+          <source media="(max-width: 560px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+          <source media="(min-width: 561px)" type="image/webp" srcset="screenshots/01-dashboard.webp">
+          <img class="hero-phone" src="screenshots/01-dashboard.png" alt="Bitcoin Insight dashboard showing the live BTC price with a 24h sparkline, block height, mempool, fees, hashrate and Moscow time" width="300" height="591" loading="eager" fetchpriority="high">
+        </picture>
       </div>
     </header>
 
     <!-- ───────── Metric chips ───────── -->
-    <section class="metrics reveal">
+    <section class="metrics reveal" aria-label="Tracked Bitcoin metrics">
       <div class="metric-grid">
         <div class="metric-card"><div class="label">Live</div><div class="name">BTC Price</div></div>
+        <div class="metric-card"><div class="label">Network</div><div class="name">Mempool</div></div>
+        <div class="metric-card"><div class="label">Network</div><div class="name">Fees · sat/vB</div></div>
         <div class="metric-card"><div class="label">On-chain</div><div class="name">Block Height</div></div>
-        <div class="metric-card"><div class="label">Activity</div><div class="name">Mempool</div></div>
-        <div class="metric-card"><div class="label">Network</div><div class="name">Fees</div></div>
         <div class="metric-card"><div class="label">Mining</div><div class="name">Hashrate</div></div>
         <div class="metric-card"><div class="label">Mining</div><div class="name">Difficulty</div></div>
-        <div class="metric-card"><div class="label">Supply</div><div class="name">Circulating &amp; Halving</div></div>
-        <div class="metric-card"><div class="label">Layer 2</div><div class="name">Lightning Network</div></div>
+        <div class="metric-card"><div class="label">Sats</div><div class="name">Moscow Time</div></div>
+        <div class="metric-card"><div class="label">Supply</div><div class="name">Circulating</div></div>
+        <div class="metric-card"><div class="label">Countdown</div><div class="name">Halving</div></div>
+        <div class="metric-card"><div class="label">Layer 2</div><div class="name">Lightning</div></div>
+      </div>
+    </section>
+
+    <!-- ───────── Positioning: the native iOS mempool app ───────── -->
+    <section class="position reveal" aria-label="The native iOS mempool app">
+      <div class="position-card">
+        <div>
+          <span class="eyebrow"><span class="dot"></span> The iOS mempool app</span>
+          <h2>The mempool, finally native on iPhone.</h2>
+          <p>mempool.space powers Bitcoin's most-loved explorer, on the web and on Android. Bitcoin Insight brings that same live data to a real, native iOS app: the mempool, network fees, a full block explorer and the entire network, designed to be the best way to follow the mempool on iPhone, built on the public mempool.space API.</p>
+        </div>
+        <div class="position-aside" aria-hidden="true">
+          <div class="pos-row"><svg class="x" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg> No official mempool app on iOS</div>
+          <div class="pos-row"><svg class="x" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg> The website isn't built for a phone</div>
+          <div class="pos-row"><svg class="ok" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Bitcoin Insight, native, fast, glanceable</div>
+        </div>
       </div>
     </section>
 
@@ -850,65 +1146,141 @@
     <section class="features" id="features">
       <div class="section-head reveal">
         <span class="eyebrow"><span class="dot"></span> Features</span>
-        <h2>The whole network, beautifully clear.</h2>
-        <p>Every important Bitcoin metric, presented with the same calm, focused design, from the live dashboard down to the smallest detail.</p>
+        <h2>Everything you need to read the network.</h2>
+        <p>From the live dashboard to interactive charts, a block explorer and watch-only wallets, one calm, focused app for all of Bitcoin's network data.</p>
       </div>
       <div class="bento">
         <div class="feature-card wide reveal">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></div>
           <h3>Live Dashboard</h3>
-          <p>Price, block height, mempool, network fees, hashrate, difficulty, Moscow time, circulating supply, halving countdown and Lightning stats, all updating in real time and refreshed with a pull.</p>
+          <p>Price, mempool, network fees, block height, hashrate, difficulty, Moscow time, circulating supply, the halving countdown and Lightning stats, auto-refreshing every 10 seconds, with a 24h price sparkline at a glance.</p>
         </div>
         <div class="feature-card wide reveal">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div>
-          <h3>Go Deeper</h3>
-          <p>Tap any metric for the full story: block contents and rewards, the emission schedule, halving math, fee distribution and difficulty adjustments, visualized with elegant charts.</p>
+          <h3>Interactive Charts</h3>
+          <p>Tap a metric and scrub its history with your finger, price back to 2011 in 19 currencies, fees, hashrate, difficulty, Moscow time, Lightning growth and the emission curve, all at a fluid 60 fps.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+          <h3>Block Explorer</h3>
+          <p>Search any transaction, block or address and watch the chain advance live, a tracking-free explorer built right in.</p>
         </div>
         <div class="feature-card reveal">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h20v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7z"/><path d="M2 7l3-4h14l3 4"/><circle cx="17" cy="13" r="1.6"/></svg></div>
           <h3>Watch-Only Wallets</h3>
-          <p>Add any xpub, ypub, zpub or single address. Track balances and full transaction history, never a private key.</p>
+          <p>Add any xpub, ypub, zpub or single address to track balances and full transaction history, never a private key.</p>
+        </div>
+        <div class="feature-card reveal">
+          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Face ID Security</h3>
+          <p>Lock your wallet behind Face ID, Touch ID or Optic ID and blur balances with a tap. Everything stays on your device in the iOS Keychain.</p>
         </div>
         <div class="feature-card reveal">
           <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg></div>
           <h3>Home &amp; Lock Widgets</h3>
-          <p>13 widgets for price, fees, halving, block height and more, in every size including Lock Screen. The one optional add-on.</p>
+          <p>14 widgets for price, fees, halving, block height and more, across Home Screen and Lock Screen sizes, the only paid extra, a one-time unlock.</p>
         </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
-          <h3>Privacy First</h3>
-          <p>No accounts, no analytics, no ads. Your data stays on your device. Network data comes straight from mempool.space.</p>
+      </div>
+    </section>
+
+    <!-- ───────── Explore (block explorer) ───────── -->
+    <section class="split" id="explore">
+      <div class="split-inner">
+        <div class="split-copy reveal">
+          <span class="eyebrow"><span class="dot"></span> Block Explorer</span>
+          <h2>Search any transaction, block or address.</h2>
+          <p>One search box for the whole blockchain, paste a block height, a hash, a transaction ID or any address and Bitcoin Insight figures out the rest. Then tap from block to transaction to address and back, the way the chain actually connects.</p>
+          <p>A live "Latest Blocks" feed streams new blocks the moment they're mined, with a gentle haptic when a new tip lands. And it's strictly read-only: looking up an address never adds it to your wallet and is never saved on your device.</p>
+          <ul class="point-list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Search blocks, transactions and addresses</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Live latest-blocks feed over a real-time connection</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Inputs, outputs, fees, confirmations, fully linked</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Tracking-free: no account, addresses never stored</li>
+          </ul>
+          <span class="pill green">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Free, with no tracking
+          </span>
         </div>
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
-          <h3>Open Source</h3>
-          <p>Every line is public under the MIT license. Audit it, contribute, or build your own version.</p>
+        <div class="visual-wrap reveal">
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/11-explore.webp"><img src="screenshots/11-explore.png" alt="Bitcoin Insight Explore tab: search any block, transaction or address, with a live latest-blocks feed" width="264" height="520" loading="lazy"></picture></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Charts ───────── -->
+    <section class="split reverse" id="charts">
+      <div class="split-inner">
+        <div class="split-copy reveal">
+          <span class="eyebrow"><span class="dot"></span> Interactive Charts</span>
+          <h2>Touch any moment in Bitcoin's history.</h2>
+          <p>Most metrics have a finger-scrubbable chart. Drag across the line and the header turns into a precise value-and-date readout with a subtle haptic tick on every point. Lift your finger and it resets.</p>
+          <p>Price history reaches all the way back to 2011, in your currency, with 19 to choose from. Fees, hashrate, difficulty, mempool, Lightning growth and Moscow time all get the same treatment, and the emission and halving curves let you scrub decades into the future.</p>
+          <ul class="point-list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Scrub with live value &amp; date readout, 24H → All</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Full price history to 2011 in 19 currencies</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Fees, hashrate, difficulty, Lightning &amp; Moscow time</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Smooth scrolling across years of data</li>
+          </ul>
+          <span class="pill orange">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+            All charts free · 19 currencies
+          </span>
+        </div>
+        <div class="visual-wrap reveal">
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/14-chart-price.webp"><img src="screenshots/14-chart-price.png" alt="Bitcoin Insight interactive BTC price chart with full history and a currency switcher" width="264" height="520" loading="lazy"></picture></div>
         </div>
       </div>
     </section>
 
     <!-- ───────── Wallets ───────── -->
-    <section class="wallets" id="wallets">
-      <div class="wallets-inner">
-        <div class="wallets-copy reveal">
+    <section class="split" id="wallets">
+      <div class="split-inner">
+        <div class="split-copy reveal">
           <span class="eyebrow"><span class="dot"></span> Wallets</span>
           <h2>Watch your stack. Keep your keys.</h2>
-          <p>Add an xpub, ypub or zpub to follow an entire wallet, or paste a single address. Bitcoin Insight derives your addresses, adds up the balances and pulls in the full transaction history, with live values in your currency.</p>
-          <p>It stays strictly watch-only. You share a public key, never a private one, so your keys stay yours and your coins never move.</p>
-          <ul class="wallet-points">
+          <p>Add an xpub, ypub or zpub to follow an entire wallet, or paste a single address. Bitcoin Insight derives your addresses on-device, adds up the balances and pulls in the full transaction history, valued live in your currency across 19 options.</p>
+          <p>It stays strictly watch-only. Paste a private key or seed phrase by accident and the app blocks it, so your keys stay yours and your coins never move.</p>
+          <ul class="point-list">
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> xpub, ypub, zpub or a single Bitcoin address</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Multiple wallets with a combined total balance</li>
             <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Full history of sent and received transactions</li>
-            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 100% watch-only, private keys never touched</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> 100% watch-only, private keys are rejected</li>
           </ul>
-          <span class="wallet-free">
+          <span class="pill green">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             Free, like the rest of the app
           </span>
         </div>
-        <div class="wallet-visual reveal" aria-hidden="true">
-          <img class="wallet-phone back" src="screenshots/08-wallet.png" alt="Bitcoin Insight watch-only wallet overview showing the total balance" loading="lazy">
-          <img class="wallet-phone front" src="screenshots/09-wallet-detail.png" alt="Bitcoin Insight wallet detail with balance, addresses and transactions" loading="lazy">
+        <div class="visual-wrap reveal">
+          <div class="screen-frame">
+            <picture><source type="image/webp" srcset="screenshots/21-wallet.webp"><img src="screenshots/21-wallet.png" alt="Bitcoin Insight watch-only wallet overview with the combined total balance across multiple wallets" width="264" height="520" loading="lazy"></picture>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ───────── Security ───────── -->
+    <section class="split reverse" id="security">
+      <div class="split-inner">
+        <div class="split-copy reveal">
+          <span class="eyebrow"><span class="dot"></span> Security &amp; Privacy</span>
+          <h2>Private by default. Locked by Face ID.</h2>
+          <p>Lock the Wallet tab behind Face ID, Touch ID or Optic ID, the rest of the app stays open. Balances blur on every launch and re-hide whenever you switch away, so no one reads your net worth over your shoulder, and your wallet never even shows up in the app-switcher preview.</p>
+          <p>There are no accounts and no servers holding your data. Wallets live only in the iOS Keychain on your device, and network data comes straight from the public mempool.space API.</p>
+          <ul class="point-list">
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Face ID / Touch ID / Optic ID wallet lock</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Tap-to-reveal, hide-on-launch balance blur</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Keychain storage, no cloud, no account</li>
+            <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> App-switcher privacy cover</li>
+          </ul>
+          <span class="pill orange">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
+            On-device · no tracking · open source
+          </span>
+        </div>
+        <div class="visual-wrap reveal">
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/16-wallet-lock.webp"><img src="screenshots/16-wallet-lock.png" alt="Bitcoin Insight Wallet tab locked behind Face ID" width="264" height="520" loading="lazy"></picture></div>
         </div>
       </div>
     </section>
@@ -925,8 +1297,8 @@
           <div class="wtile feerow">
             <div class="wlabel">Fees · sat/vB</div>
             <div class="frow"><span>High</span><span class="v" style="color:var(--red)">3</span></div>
-            <div class="frow"><span>Medium</span><span class="v" style="color:var(--accent)">3</span></div>
-            <div class="frow"><span>Low</span><span class="v" style="color:var(--green)">3</span></div>
+            <div class="frow"><span>Medium</span><span class="v" style="color:var(--accent)">2</span></div>
+            <div class="frow"><span>Low</span><span class="v" style="color:var(--green)">1</span></div>
           </div>
           <div class="wtile">
             <div class="wlabel">Halving</div>
@@ -935,21 +1307,94 @@
           </div>
           <div class="wtile">
             <div class="wlabel">Block Height</div>
-            <div class="wbig">953,529</div>
+            <div class="wbig">955,917</div>
             <div class="wsub">latest block</div>
           </div>
         </div>
         <div class="widgets-copy reveal">
           <span class="eyebrow"><span class="dot"></span> Widgets</span>
           <h2>Bitcoin on your Home &amp; Lock Screen.</h2>
-          <p>Keep the price, fees, block height, halving progress, Moscow time, Lightning and more right where you'll see them. 13 widgets across every size: small, medium, large, and the Lock Screen accessory shapes.</p>
-          <p>The app and everything in it is free. Widgets are the only paid part: a single one-time unlock of <strong>&euro;4.99</strong>. No subscription, yours forever.</p>
-          <span class="widget-meta">
+          <p>Keep the price, fees, block height, halving progress, Moscow time, Lightning and more right where you'll see them. 14 widgets across Home Screen sizes, small, medium, large, and the Lock Screen accessory shapes, each tapping straight into the matching screen in the app.</p>
+          <p>Everything in the app is free. Widgets are the only paid part: a single one-time unlock of <strong>€4.99</strong>. No subscription, yours forever.</p>
+          <span class="pill orange">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg>
-            13 widgets · &euro;4.99 one-time · no subscription
+            14 widgets · €4.99 one-time · no subscription
           </span>
         </div>
       </div>
+    </section>
+
+    <!-- ───────── Comparison ───────── -->
+    <section class="compare" id="compare">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span> Why Bitcoin Insight</span>
+        <h2>A lot of app. None of the catches.</h2>
+        <p>Many Bitcoin apps ask you to choose: pay a subscription, accept ads, or settle for a website. Bitcoin Insight doesn't.</p>
+      </div>
+      <div class="compare-table-wrap reveal" role="region" aria-label="Feature comparison" tabindex="0">
+        <table class="compare-table">
+          <colgroup><col><col class="col-us"><col><col></colgroup>
+          <thead>
+            <tr>
+              <th scope="col">&nbsp;</th>
+              <th scope="col" class="us">Bitcoin Insight</th>
+              <th scope="col">Other widget apps</th>
+              <th scope="col">mempool.space website</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="feat">Native iOS app</td>
+              <td class="us"><span class="ci-yes">Yes</span></td>
+              <td class="cell"><span class="ci-yes">Yes</span></td>
+              <td class="cell"><span class="ci-no">Web only</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Price</td>
+              <td class="us"><span class="ci-yes">Free</span> · €4.99 one-time widgets</td>
+              <td class="cell"><span class="ci-no">Monthly / yearly subscription</span></td>
+              <td class="cell"><span class="ci-yes">Free</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Block explorer (tx / block / address)</td>
+              <td class="us"><span class="ci-yes">Yes</span></td>
+              <td class="cell"><span class="ci-no">Rarely</span></td>
+              <td class="cell"><span class="ci-yes">Yes</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Watch-only wallets (xpub/ypub/zpub)</td>
+              <td class="us"><span class="ci-yes">Yes</span></td>
+              <td class="cell"><span class="ci-no">No</span></td>
+              <td class="cell"><span class="ci-no">No</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Interactive charts to 2011</td>
+              <td class="us"><span class="ci-yes">Yes · 19 currencies</span></td>
+              <td class="cell"><span class="ci-no">Limited</span></td>
+              <td class="cell"><span class="ci-no">Limited</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Home &amp; Lock Screen widgets</td>
+              <td class="us"><span class="ci-yes">14</span></td>
+              <td class="cell"><span class="ci-yes">Yes</span></td>
+              <td class="cell"><span class="ci-no">No</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Accounts, ads &amp; tracking</td>
+              <td class="us"><span class="ci-yes">None</span></td>
+              <td class="cell"><span class="ci-no">Often</span></td>
+              <td class="cell"><span class="ci-yes">None</span></td>
+            </tr>
+            <tr>
+              <td class="feat">Open source</td>
+              <td class="us"><span class="ci-yes">Yes · MIT</span></td>
+              <td class="cell"><span class="ci-no">Usually not</span></td>
+              <td class="cell"><span class="ci-yes">Yes</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="compare-note">General comparison for orientation. Bitcoin Insight is independent and not affiliated with mempool.space or Apple.</p>
     </section>
 
     <!-- ───────── Screenshots ───────── -->
@@ -964,16 +1409,20 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <div class="screens-scroll" id="screensScroll">
-          <div class="screen-frame"><img src="screenshots/01-dashboard.png" alt="Live dashboard with BTC price, block height, mempool and fees" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/02-network.png" alt="Circulating supply, halving countdown, Lightning Network and fee distribution" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/03-block.png" alt="Block height detail with transactions, size, reward and fees" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/04-mempool.png" alt="Mempool detail with virtual size, total fees and blocks to clear" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/05-supply.png" alt="Circulating supply with emission schedule chart" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/06-halving.png" alt="Halving countdown with reward, daily issuance and inflation rate" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/07-halving-chart.png" alt="Block reward schedule chart over time" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/08-wallet.png" alt="Watch-only wallet overview with total balance" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/09-wallet-detail.png" alt="Wallet detail with balance, addresses and transactions" loading="lazy"></div>
-          <div class="screen-frame"><img src="screenshots/10-wallet-add.png" alt="Add a watch-only wallet via xpub, ypub, zpub or address" loading="lazy"></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/01-dashboard.webp"><img src="screenshots/01-dashboard.png" alt="Live dashboard with the BTC price, 24h sparkline, block height, mempool, fees and hashrate" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/02-network.webp"><img src="screenshots/02-network.png" alt="Moscow time, circulating supply, halving countdown and Lightning Network stats" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/14-chart-price.webp"><img src="screenshots/14-chart-price.png" alt="Interactive BTC price chart with full history back to 2011 and a currency switcher" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/23-hashrate.webp"><img src="screenshots/23-hashrate.png" alt="Network hashrate chart over time" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/24-supply.webp"><img src="screenshots/24-supply.png" alt="Circulating supply and emission schedule chart" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/22-halving.webp"><img src="screenshots/22-halving.png" alt="Block reward and halving schedule chart" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/15-chart-fees.webp"><img src="screenshots/15-chart-fees.png" alt="Network fees chart: fast, medium and slow sat/vB over time" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/11-explore.webp"><img src="screenshots/11-explore.png" alt="Explore: search any block, transaction or address with a live blocks feed" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/12-explore-block.webp"><img src="screenshots/12-explore-block.png" alt="Block detail with the mining pool, reward, fees and size" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/13-explore-tx.webp"><img src="screenshots/13-explore-tx.png" alt="Transaction detail with inputs, outputs, fee rate and confirmations" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/21-wallet.webp"><img src="screenshots/21-wallet.png" alt="Watch-only wallet overview with the combined total balance" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/16-wallet-lock.webp"><img src="screenshots/16-wallet-lock.png" alt="Face ID lock protecting the Wallet tab" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/17-wallet-hidden.webp"><img src="screenshots/17-wallet-hidden.png" alt="Hide and blur balances for shoulder-surfing privacy" width="264" height="520" loading="lazy"></picture></div>
+          <div class="screen-frame"><picture><source type="image/webp" srcset="screenshots/18-settings-security.webp"><img src="screenshots/18-settings-security.png" alt="Settings: Face ID, hide balances and gap limit" width="264" height="520" loading="lazy"></picture></div>
         </div>
         <button class="scroll-btn" id="scrollRight" aria-label="Scroll right">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -981,30 +1430,80 @@
       </div>
     </section>
 
+    <!-- ───────── FAQ ───────── -->
+    <section class="faq" id="faq">
+      <div class="section-head reveal">
+        <span class="eyebrow"><span class="dot"></span> FAQ</span>
+        <h2>Questions, answered.</h2>
+        <p>The things people ask most about Bitcoin Insight, the mempool, and watch-only wallets.</p>
+      </div>
+      <div class="faq-list reveal">
+        <details class="faq-item">
+          <summary>Is there an official mempool app for iPhone? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-body">mempool.space offers its explorer on the web and as an Android app, but there's no official native mempool app for iOS. Bitcoin Insight is a native iPhone app that brings the same live mempool, fee and network data, plus a built-in block explorer, to iOS, using the public mempool.space API. It's independent and not affiliated with mempool.space.</div>
+        </details>
+        <details class="faq-item">
+          <summary>How is it different from the mempool.space website? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-body">Bitcoin Insight is a purpose-built native app rather than a website. You get a glanceable dashboard, finger-scrubbable charts, Home and Lock Screen widgets, watch-only wallet tracking with Face ID, and a tracking-free explorer, all tuned for iPhone. It uses mempool.space's public data as its source.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Is it free? Is there a subscription? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-body">The app is completely free with no subscription, no accounts and no ads. The dashboard, all charts, the block explorer, watch-only wallets and every security feature are free. The only paid item is an optional one-time lifetime unlock (about €4.99) for the Home and Lock Screen widgets, pay once, yours forever.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is a watch-only wallet, and is it safe? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-body">A watch-only wallet tracks balances and transactions using only a public key (xpub, ypub or zpub) or a single address, never a private key. Bitcoin Insight actively rejects private keys and seed phrases, derives addresses on your device, and stores wallets in the iOS Keychain. It can never move your coins, so there's no spending risk.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What is Moscow time? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-body">Moscow time is how many satoshis equal one unit of your fiat currency (100,000,000 ÷ the Bitcoin price). As Bitcoin rises, the number of sats per dollar or euro falls. Bitcoin Insight shows Moscow time live on the dashboard and as an interactive chart in all 19 supported currencies.</div>
+        </details>
+        <details class="faq-item">
+          <summary>What's a good Bitcoin fee (sat/vB)? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-body">It depends on how busy the mempool is. Bitcoin Insight works as a live fee tracker, showing low, medium and high recommendations in sat/vB plus a chart of how fees have trended, so you can pick the cheapest moment to send. When the mempool is quiet you can often pay 1–2 sat/vB; when it's congested, higher fees confirm faster.</div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it need an account or collect my data? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></summary>
+          <div class="faq-body">No. There's no sign-up or login, no analytics and no tracking. Everything you enter stays on your device, network data comes straight from the public mempool.space API, and the app is fully <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener">open source</a> so anyone can verify it.</div>
+        </details>
+      </div>
+      <p style="text-align:center; margin-top:30px;"><a href="/guides/" style="color:var(--accent); text-decoration:none; font-weight:600;">Browse all Bitcoin guides →</a></p>
+    </section>
+
     <!-- ───────── Open source CTA ───────── -->
     <section class="opensource" id="open-source">
       <div class="os-card reveal">
-        <h2>100% open source.</h2>
-        <p>Bitcoin Insight is free and built in the open. Check out the code, open an issue, or fork it and make it your own.</p>
+        <h2>Get Bitcoin Insight.</h2>
+        <p>Free, open source, no subscription. Download it on the App Store, or dive into the code on GitHub.</p>
+        <div class="hero-buttons" style="justify-content:center;">
+        <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          Download on the App Store
+        </a>
         <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener" class="btn btn-secondary">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
           View on GitHub
         </a>
+        </div>
       </div>
     </section>
 
-  </div>
+  </main>
 
   <!-- ───────── Footer ───────── -->
   <footer>
     <div class="container">
       <div class="footer-inner">
         <div class="footer-brand">
-          <img src="assets/logo.png" alt="Bitcoin Insight logo">
+          <img src="assets/logo.png" alt="Bitcoin Insight logo" width="30" height="30">
           Bitcoin Insight
         </div>
         <div class="footer-links">
-          <a href="https://apps.apple.com/de/app/bitcoin-insight-mempool/id6753660088" target="_blank" rel="noopener">App Store</a>
+          <a href="#features">Features</a>
+          <a href="#explore">Explorer</a>
+          <a href="/guides/">Guides</a>
+          <a href="#faq">FAQ</a>
+          <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener">App Store</a>
           <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener">GitHub</a>
           <button type="button" onclick="openModal('privacyModal')">Privacy</button>
           <button type="button" onclick="openModal('imprintModal')">Imprint</button>
@@ -1028,7 +1527,7 @@
       <p>Everything you enter into the app, such as wallet addresses and preferences, is stored exclusively on your device. We don't operate any servers, so nothing is sent to us.</p>
 
       <h3>Third-Party API</h3>
-      <p>To display Bitcoin network data and watch-only wallet balances, the app connects to the public <a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a> API. These requests are made directly from your device. When you add a watch-only wallet, its addresses are visible to mempool.space in order to look up balances. Please refer to the <a href="https://mempool.space/about" target="_blank" rel="noopener">mempool.space privacy policy</a> for details.</p>
+      <p>To display Bitcoin network data and watch-only wallet balances, the app connects to the public <a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a> API. These requests are made directly from your device. When you add a watch-only wallet or look up an address in the explorer, its addresses are visible to mempool.space in order to look up balances. Please refer to the <a href="https://mempool.space/about" target="_blank" rel="noopener">mempool.space privacy policy</a> for details.</p>
 
       <h3>Purchases</h3>
       <p>The optional one-time widget unlock is processed entirely by Apple via the App Store. We never receive your payment details. The <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a> applies.</p>
@@ -1043,7 +1542,7 @@
 
   <!-- ───────── Imprint modal ───────── -->
   <div class="modal-overlay" id="imprintModal" onclick="if(event.target===this)closeModal('imprintModal')">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="imprintTitle">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="imprintTitle" lang="de">
       <button class="modal-close" onclick="closeModal('imprintModal')" aria-label="Close">&times;</button>
       <h2 id="imprintTitle">Impressum</h2>
       <p>Angaben gem&auml;&szlig; &sect; 5 TMG</p>
@@ -1074,8 +1573,24 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    // Mobile menu
+    const navToggle = document.getElementById('navToggle');
+    const navLinksEl = document.getElementById('navLinks');
+    const setMenu = (open) => {
+      navLinksEl.classList.toggle('open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    };
+    navToggle.addEventListener('click', () => setMenu(!navLinksEl.classList.contains('open')));
+    navLinksEl.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && navLinksEl.classList.contains('open')) { setMenu(false); navToggle.focus(); }
+    });
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 900 && navLinksEl.classList.contains('open')) setMenu(false);
+    }, { passive: true });
+
     // Scroll-spy: highlight the nav link for the section currently in view
-    const spyIds = ['features', 'wallets', 'widgets', 'screenshots', 'open-source'];
+    const spyIds = ['features', 'explore', 'charts', 'wallets', 'security', 'widgets', 'compare', 'screenshots', 'faq', 'open-source'];
     const spySections = spyIds
       .map(id => document.getElementById(id))
       .filter(Boolean)
@@ -1083,25 +1598,28 @@
     const navLinks = [...document.querySelectorAll('.nav-links a')];
 
     // A nav link maps to a section by its #hash, or by an explicit data-spy id.
-    // The external GitHub link uses data-spy so it lights up while the
-    // open-source section (its in-page CTA) is on screen.
     const navTargetId = a => a.dataset.spy || (a.getAttribute('href') || '').replace(/^#/, '');
 
+    // Sections without their own nav link fold onto the nearest preceding link.
+    const linkIds = new Set(navLinks.map(navTargetId).filter(Boolean));
+    const spyToLink = id => {
+      const map = { security: 'wallets', compare: 'widgets', screenshots: 'widgets', 'open-source': 'open-source' };
+      return linkIds.has(id) ? id : (map[id] || id);
+    };
+
     function setActiveNav(id) {
-      navLinks.forEach(a => a.classList.toggle('active', !!id && navTargetId(a) === id));
+      const target = id ? spyToLink(id) : null;
+      navLinks.forEach(a => a.classList.toggle('active', !!target && navTargetId(a) === target));
     }
 
     if (spySections.length) {
       let lastActive = '__init__';
       const updateSpy = () => {
-        // The section whose top has scrolled past the line just below the
-        // sticky nav is the one the reader is currently looking at.
         const pos = window.scrollY + 130;
         let current = null;
         for (const s of spySections) {
           if (s.offsetTop <= pos) current = s.id;
         }
-        // Once the last section fills the screen near the bottom, keep it lit.
         const atBottom = window.innerHeight + window.scrollY >= document.body.scrollHeight - 4;
         if (atBottom) current = spySections[spySections.length - 1].id;
         if (current !== lastActive) { setActiveNav(current); lastActive = current; }
@@ -1112,8 +1630,21 @@
     }
 
     // Modals
-    function openModal(id) { document.getElementById(id).classList.add('open'); document.body.style.overflow = 'hidden'; }
-    function closeModal(id) { document.getElementById(id).classList.remove('open'); document.body.style.overflow = ''; }
+    let lastFocused = null;
+    function openModal(id) {
+      lastFocused = document.activeElement;
+      const m = document.getElementById(id);
+      m.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      const closeBtn = m.querySelector('.modal-close');
+      if (closeBtn) closeBtn.focus();
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocused && typeof lastFocused.focus === 'function') { lastFocused.focus(); }
+      lastFocused = null;
+    }
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.open').forEach(m => closeModal(m.id));
     });
@@ -1128,22 +1659,23 @@
     const scroller = document.getElementById('screensScroll');
     const frames = scroller.querySelectorAll('.screen-frame');
     const step = () => (frames[0] ? frames[0].offsetWidth + 26 : 290);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const sb = reduce ? 'auto' : 'smooth';
 
-    document.getElementById('scrollLeft').addEventListener('click', () => { scroller.scrollBy({ left: -step(), behavior: 'smooth' }); pause(); });
-    document.getElementById('scrollRight').addEventListener('click', () => { scroller.scrollBy({ left: step(), behavior: 'smooth' }); pause(); });
+    document.getElementById('scrollLeft').addEventListener('click', () => { scroller.scrollBy({ left: -step(), behavior: sb }); pause(); });
+    document.getElementById('scrollRight').addEventListener('click', () => { scroller.scrollBy({ left: step(), behavior: sb }); pause(); });
 
     let idx = 0, timer = null, resume = null;
     function go(i) {
       const f = frames[i];
       if (!f) return;
-      scroller.scrollTo({ left: f.offsetLeft - scroller.offsetLeft - 26, behavior: 'smooth' });
+      scroller.scrollTo({ left: f.offsetLeft - scroller.offsetLeft - 26, behavior: sb });
     }
     function start() {
       stop();
       timer = setInterval(() => {
         idx = (idx + 1) % frames.length;
-        // loop back to start when reaching the end
-        if (idx === 0) { scroller.scrollTo({ left: 0, behavior: 'smooth' }); return; }
+        if (idx === 0) { scroller.scrollTo({ left: 0, behavior: sb }); return; }
         go(idx);
       }, 3200);
     }
@@ -1152,7 +1684,6 @@
       stop();
       clearTimeout(resume);
       resume = setTimeout(() => {
-        // sync index to nearest frame
         const center = scroller.scrollLeft + scroller.clientWidth / 2;
         let best = 0, bestD = Infinity;
         frames.forEach((f, i) => {
@@ -1166,7 +1697,11 @@
     }
     scroller.addEventListener('pointerdown', pause, { passive: true });
     scroller.addEventListener('wheel', pause, { passive: true });
-    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) start();
+    scroller.addEventListener('mouseenter', stop);
+    scroller.addEventListener('mouseleave', () => { if (!reduce) start(); });
+    scroller.addEventListener('focusin', stop);
+    scroller.addEventListener('focusout', () => { if (!reduce) start(); });
+    if (!reduce) start();
   </script>
 </body>
 </html>

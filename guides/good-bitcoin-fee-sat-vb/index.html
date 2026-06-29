@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What's a Good Bitcoin Fee (sat/vB) Right Now? (2026)</title>
+  <meta name="description" content="What counts as a good Bitcoin fee in sat/vB, how low/medium/high recommendations work, when 1 sat/vB is fine, and how to track fees live on iPhone.">
+  <meta name="author" content="Merlin Kreuzkam">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-itunes-app" content="app-id=6753660088">
+  <link rel="canonical" href="https://bitcoin-insight.app/guides/good-bitcoin-fee-sat-vb/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bitcoin Insight">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="What's a Good Bitcoin Fee (sat/vB) Right Now?">
+  <meta property="og:description" content="What counts as a good Bitcoin fee in sat/vB, how the low/medium/high recommendations work, and how to track fees live on iPhone.">
+  <meta property="og:url" content="https://bitcoin-insight.app/guides/good-bitcoin-fee-sat-vb/">
+  <meta property="og:image" content="https://bitcoin-insight.app/assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bitcoin Insight – live Bitcoin fee tracker for iPhone">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What's a Good Bitcoin Fee (sat/vB) Right Now?">
+  <meta name="twitter:description" content="What counts as a good Bitcoin fee in sat/vB and how to track fees live on iPhone.">
+  <meta name="twitter:image" content="https://bitcoin-insight.app/assets/og-image.png">
+
+  <link rel="icon" type="image/png" href="../../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../../assets/logo.png">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bitcoin-insight.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://bitcoin-insight.app/guides/" },
+          { "@type": "ListItem", "position": 3, "name": "What's a good Bitcoin fee (sat/vB) right now?", "item": "https://bitcoin-insight.app/guides/good-bitcoin-fee-sat-vb/" }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": "What's a good Bitcoin fee (sat/vB) right now?",
+        "description": "What counts as a good Bitcoin fee in sat/vB, how low/medium/high recommendations work, when 1 sat/vB is fine, and how to track fees live on iPhone.",
+        "inLanguage": "en",
+        "datePublished": "2026-06-29",
+        "dateModified": "2026-06-29",
+        "image": "https://bitcoin-insight.app/assets/og-image.png",
+        "mainEntityOfPage": "https://bitcoin-insight.app/guides/good-bitcoin-fee-sat-vb/",
+        "author": { "@type": "Organization", "name": "Bitcoin Insight", "url": "https://bitcoin-insight.app/" },
+        "publisher": { "@type": "Organization", "name": "Bitcoin Insight", "url": "https://bitcoin-insight.app/", "logo": { "@type": "ImageObject", "url": "https://bitcoin-insight.app/assets/logo.png" } }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is a good Bitcoin fee in sat/vB right now?",
+            "acceptedAnswer": { "@type": "Answer", "text": "It depends on how busy the mempool is. When the network is quiet, 1-5 sat/vB often confirms within a few blocks, and 1 sat/vB can be enough if you are not in a hurry. When the mempool is congested, the high-priority rate can climb to dozens or even hundreds of sat/vB. The only reliable answer is the live rate, so check a fee tracker before you send rather than trusting a fixed number." }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I check Bitcoin fees on my iPhone?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Open a native fee tracker like Bitcoin Insight. Its live dashboard shows the current low, medium and high fee recommendations in sat/vB, plus a fee chart so you can see whether rates are rising or falling. You can also add a Home or Lock Screen widget to keep the current fee in view without opening the app." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is 1 sat/vB enough to send Bitcoin?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sometimes. When the mempool is nearly empty, a 1 sat/vB transaction can confirm in the next few blocks. When the mempool is busy, a 1 sat/vB transaction may sit unconfirmed for hours or days, or get dropped. If you might need it sooner, send with RBF enabled so you can bump the fee later, or pay the current low rate instead." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-glow"></div>
+
+  <div class="nav-bar" id="navBar">
+    <nav>
+      <a href="/" class="logo" aria-label="Bitcoin Insight home">
+        <img src="../../assets/logo.png" alt="Bitcoin Insight app icon" width="34" height="34">
+        Bitcoin Insight
+      </a>
+      <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="nav-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+    </nav>
+  </div>
+
+  <main class="wrap" id="main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> › <a href="/guides/">Guides</a> › <span>Good Bitcoin fee (sat/vB)</span>
+    </nav>
+
+    <header class="guide-head">
+      <span class="eyebrow"><span class="dot"></span> Guide</span>
+      <h1>What's a good Bitcoin <span class="accent-text">fee</span> (sat/vB) right now?</h1>
+      <p class="guide-meta">Last updated June 2026 · 5 min read</p>
+    </header>
+
+    <article>
+      <p class="lead">There's no single "correct" Bitcoin fee. The right rate in sat/vB depends entirely on how busy the mempool is at the moment you hit send. Here's how to read the low/medium/high recommendations, when 1-2 sat/vB is plenty, and when it pays to spend a little more.</p>
+
+      <div class="callout">
+        <strong>In a nutshell:</strong> a "good" fee is the lowest sat/vB rate that still confirms in your timeframe. Check the live low/medium/high rates first, send the lowest one you can wait for, and enable RBF so you can bump it if you're wrong.
+      </div>
+
+      <div class="toc">
+        <div class="toc-title">On this page</div>
+        <ul>
+          <li><a href="#what-is-satvb">What sat/vB actually means</a></li>
+          <li><a href="#recommendations">How low / medium / high work</a></li>
+          <li><a href="#congestion">Why the right fee depends on the mempool</a></li>
+          <li><a href="#avoid-overpaying">How to avoid overpaying</a></li>
+          <li><a href="#rbf">RBF in brief</a></li>
+          <li><a href="#track-iphone">Track fees live on iPhone</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <h2 id="what-is-satvb">What sat/vB actually means</h2>
+      <p>Bitcoin fees aren't priced per transaction or per dollar sent, they're priced by size. The unit is <strong>satoshis per virtual byte</strong>, written <strong>sat/vB</strong>. A satoshi is one hundred-millionth of a bitcoin, and a virtual byte ("vbyte") measures how much space your transaction takes up in a block.</p>
+      <p>So your total fee is roughly <em>your transaction's size in vbytes × the sat/vB rate you choose</em>. A simple payment might be around 140 vBytes; a transaction that sweeps many small inputs can be far larger. That's why two people sending the same amount of bitcoin can pay very different fees, the fee follows the data footprint, not the value. Miners order the mempool by sat/vB and fill each block with the highest-paying transactions first, which is the whole reason this single number matters so much.</p>
+
+      <h2 id="recommendations">How the low / medium / high recommendations work</h2>
+      <p>Most fee trackers, including <a href="/">Bitcoin Insight</a>, show three suggested rates. They're estimates of what it takes to get confirmed within a certain number of blocks, based on what's currently waiting in the mempool:</p>
+      <ul>
+        <li><strong>High priority</strong>, aims for the very next block or two (roughly 10-20 minutes). Use it when timing genuinely matters.</li>
+        <li><strong>Medium priority</strong>, targets confirmation within about half an hour to an hour. A sensible default for most payments.</li>
+        <li><strong>Low priority</strong>, the economical rate. It may take several blocks or longer, but it's the cheapest way to get on chain.</li>
+      </ul>
+      <p>These are forecasts, not guarantees. They shift as the mempool fills and empties, so a "high" rate at 2am can be lower than a "low" rate during a busy afternoon. Always read them live rather than memorizing a number.</p>
+
+      <h2 id="congestion">Why the right fee depends on mempool congestion</h2>
+      <p>Bitcoin produces a new block roughly every 10 minutes, and each block has limited space. When fewer transactions are waiting than blocks can clear, there's no competition and fees fall toward the network minimum. When more transactions pile up than blocks can absorb, senders bid against each other and the going rate climbs.</p>
+      <p>That backlog is the <a href="/guides/how-to-read-the-bitcoin-mempool/">mempool</a>. Watching it is the single best way to judge fees: a near-empty mempool means you can pay a few sat/vB and still confirm quickly, while a deep backlog means the low rate might take hours. If you understand the mempool, you understand fees, they're two views of the same thing.</p>
+
+      <h2 id="avoid-overpaying">How to avoid overpaying</h2>
+      <p>Overpaying usually comes from guessing instead of checking. A few habits keep fees low:</p>
+      <ul>
+        <li><strong>Check before you send.</strong> Glance at the live rates and the fee chart's trend. If fees are falling, waiting an hour can halve your cost.</li>
+        <li><strong>Match the fee to the urgency.</strong> Moving savings to cold storage rarely needs high priority, the low rate is fine.</li>
+        <li><strong>Send when the mempool is quiet.</strong> Evenings and weekends are often calmer. There's no fixed schedule, which is exactly why a live tracker helps.</li>
+        <li><strong>Don't trust your wallet's default blindly.</strong> Some wallets pad the estimate. If you know the live rate, you can set it yourself with confidence.</li>
+      </ul>
+
+      <h2 id="rbf">When 1-2 sat/vB is fine, and RBF in brief</h2>
+      <p>Paying just <strong>1-2 sat/vB</strong> is perfectly reasonable when the mempool is nearly empty and you're not in a rush, for example, consolidating inputs or topping up cold storage overnight. The risk is that congestion can return before your transaction confirms, leaving it stuck.</p>
+      <p>That's where <strong>Replace-By-Fee (RBF)</strong> comes in. If you flag a transaction as replaceable when you send it, you can later broadcast a new version of the same transaction with a higher fee to jump the queue. So a smart low-fee strategy is: send at a low rate with RBF enabled, watch the mempool, and bump only if it stalls. You get the cheap path most of the time and an escape hatch when you need it.</p>
+
+      <h2 id="track-iphone">How to track Bitcoin fees live on iPhone</h2>
+      <p>The cleanest way to check fees on iPhone is a native Bitcoin transaction fee app rather than a browser tab. <a href="/">Bitcoin Insight</a> is built for exactly this:</p>
+      <ul>
+        <li><strong>Live fee tracker</strong>, current low, medium and high sat/vB rates on the dashboard, updating in real time from the public mempool.space API.</li>
+        <li><strong>Fee chart</strong>, a finger-scrubbable history so you can see whether rates are climbing or cooling off before you send.</li>
+        <li><strong>Home &amp; Lock Screen widgets</strong>, keep the current fee in view at a glance, no app launch required.</li>
+        <li><strong>The full picture</strong>, mempool size, block height and a built-in block explorer alongside the fees, so you can confirm <em>why</em> the rate is what it is.</li>
+      </ul>
+      <p>It's a native iOS app (iOS 17+), free and open source under the MIT license, with no accounts, no ads and no tracking, the only paid extra is a one-time unlock for the widgets. If you want to compare options first, see the <a href="/guides/best-bitcoin-mempool-apps-iphone/">best Bitcoin mempool apps for iPhone</a>.</p>
+
+      <div class="callout">
+        <strong>Want the bigger picture?</strong> Learn <a href="/guides/how-to-read-the-bitcoin-mempool/">how to read the Bitcoin mempool</a>, or find out whether there's an <a href="/guides/official-mempool-app-iphone/">official mempool app for iPhone</a>.
+      </div>
+
+      <h2 id="faq">FAQ</h2>
+      <h3>What is a good Bitcoin fee in sat/vB right now?</h3>
+      <p>It depends on how busy the mempool is. When the network is quiet, 1-5 sat/vB often confirms within a few blocks, and 1 sat/vB can be enough if you are not in a hurry. When the mempool is congested, the high-priority rate can climb to dozens or even hundreds of sat/vB. The only reliable answer is the live rate, so check a fee tracker before you send rather than trusting a fixed number.</p>
+      <h3>How do I check Bitcoin fees on my iPhone?</h3>
+      <p>Open a native fee tracker like Bitcoin Insight. Its live dashboard shows the current low, medium and high fee recommendations in sat/vB, plus a fee chart so you can see whether rates are rising or falling. You can also add a Home or Lock Screen widget to keep the current fee in view without opening the app.</p>
+      <h3>Is 1 sat/vB enough to send Bitcoin?</h3>
+      <p>Sometimes. When the mempool is nearly empty, a 1 sat/vB transaction can confirm in the next few blocks. When the mempool is busy, a 1 sat/vB transaction may sit unconfirmed for hours or days, or get dropped. If you might need it sooner, send with RBF enabled so you can bump the fee later, or pay the current low rate instead.</p>
+    </article>
+
+    <div class="cta-card">
+      <h2>Track Bitcoin fees live.</h2>
+      <p>Low / medium / high sat/vB, a fee chart and widgets, free, on your iPhone.</p>
+      <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+
+    <nav class="related" aria-label="Related guides">
+      <h2>Keep reading</h2>
+      <ul>
+        <li><a href="/guides/how-to-read-the-bitcoin-mempool/">How to read the Bitcoin mempool <span>What the mempool is and how to use it.</span></a></li>
+        <li><a href="/guides/official-mempool-app-iphone/">Official mempool app for iPhone? <span>What's available on iOS, and what isn't.</span></a></li>
+        <li><a href="/guides/best-bitcoin-mempool-apps-iphone/">Best Bitcoin mempool apps for iPhone <span>How the native options compare.</span></a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../../assets/logo.png" alt="Bitcoin Insight logo" width="30" height="30">
+        Bitcoin Insight
+      </div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/guides/">Guides</a>
+        <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener">App Store</a>
+        <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="year">2026</span> Bitcoin Insight · Free &amp; open source under the MIT License. Not affiliated with Apple or mempool.space.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navBar = document.getElementById('navBar');
+    const onScroll = () => navBar.classList.toggle('scrolled', window.scrollY > 16);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xpub vs ypub vs zpub: Watch-Only Wallets Explained (2026)</title>
+  <meta name="description" content="What xpub, ypub and zpub mean, why a watch-only wallet is safe (public keys only), and how to track an xpub balance on iPhone with Face ID, free.">
+  <meta name="author" content="Merlin Kreuzkam">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-itunes-app" content="app-id=6753660088">
+  <link rel="canonical" href="https://bitcoin-insight.app/guides/xpub-ypub-zpub-watch-only-wallet/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Bitcoin Insight">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="xpub vs ypub vs zpub: Watch-Only Wallets Explained">
+  <meta property="og:description" content="What xpub, ypub and zpub mean, why a watch-only wallet is safe, and how to track an xpub balance on iPhone with Face ID.">
+  <meta property="og:url" content="https://bitcoin-insight.app/guides/xpub-ypub-zpub-watch-only-wallet/">
+  <meta property="og:image" content="https://bitcoin-insight.app/assets/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Bitcoin Insight – the native Bitcoin mempool app for iPhone">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="xpub vs ypub vs zpub: Watch-Only Wallets Explained">
+  <meta name="twitter:description" content="What xpub, ypub and zpub mean, why a watch-only wallet is safe, and how to track an xpub on iPhone.">
+  <meta name="twitter:image" content="https://bitcoin-insight.app/assets/og-image.png">
+
+  <link rel="icon" type="image/png" href="../../assets/favicon.png">
+  <link rel="apple-touch-icon" href="../../assets/logo.png">
+  <link rel="stylesheet" href="../../assets/css/guide.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://bitcoin-insight.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Guides", "item": "https://bitcoin-insight.app/guides/" },
+          { "@type": "ListItem", "position": 3, "name": "xpub vs ypub vs zpub: watch-only wallets explained", "item": "https://bitcoin-insight.app/guides/xpub-ypub-zpub-watch-only-wallet/" }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": "xpub vs ypub vs zpub: watch-only wallets explained",
+        "description": "What xpub, ypub and zpub mean, why a watch-only wallet is safe (public keys only), and how to track an xpub balance on iPhone with Face ID.",
+        "inLanguage": "en",
+        "datePublished": "2026-06-29",
+        "dateModified": "2026-06-29",
+        "image": "https://bitcoin-insight.app/assets/og-image.png",
+        "mainEntityOfPage": "https://bitcoin-insight.app/guides/xpub-ypub-zpub-watch-only-wallet/",
+        "author": { "@type": "Organization", "name": "Bitcoin Insight", "url": "https://bitcoin-insight.app/" },
+        "publisher": { "@type": "Organization", "name": "Bitcoin Insight", "url": "https://bitcoin-insight.app/", "logo": { "@type": "ImageObject", "url": "https://bitcoin-insight.app/assets/logo.png" } }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is a watch-only wallet safe?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. A watch-only wallet holds only your extended public key (xpub, ypub or zpub), never a private key or seed phrase. It can show balances and transaction history, but it cannot move funds, because spending requires the private keys that never leave your hardware or signing wallet. Bitcoin Insight goes a step further and rejects private keys outright if you ever paste one by mistake." }
+          },
+          {
+            "@type": "Question",
+            "name": "What is the difference between xpub, ypub and zpub?",
+            "acceptedAnswer": { "@type": "Answer", "text": "They are the same kind of extended public key with different version prefixes that signal which address type a wallet uses. xpub maps to legacy P2PKH addresses that start with 1, ypub maps to nested SegWit P2SH addresses that start with 3, and zpub maps to native SegWit bech32 addresses that start with bc1. Use the prefix your wallet exported so the addresses derived for watching match the ones you actually use." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I track an xpub balance on iPhone with Face ID?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Bitcoin Insight is a native iOS app that lets you add an xpub, ypub or zpub as a watch-only wallet. Addresses are derived on-device, the key is stored in the iOS Keychain, and you can lock the wallet behind Face ID, Touch ID or Optic ID and hide balances with a tap. It is free, with no account required." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bg-glow"></div>
+
+  <div class="nav-bar" id="navBar">
+    <nav>
+      <a href="/" class="logo" aria-label="Bitcoin Insight home">
+        <img src="../../assets/logo.png" alt="Bitcoin Insight app icon" width="34" height="34">
+        Bitcoin Insight
+      </a>
+      <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="nav-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        App Store
+      </a>
+    </nav>
+  </div>
+
+  <main class="wrap" id="main">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a> › <a href="/guides/">Guides</a> › <span>xpub vs ypub vs zpub</span>
+    </nav>
+
+    <header class="guide-head">
+      <span class="eyebrow"><span class="dot"></span> Guide</span>
+      <h1><span class="accent-text">xpub</span> vs ypub vs zpub: watch-only wallets explained</h1>
+      <p class="guide-meta">Last updated June 2026 · 6 min read</p>
+    </header>
+
+    <article>
+      <p class="lead">An xpub, ypub or zpub is the public half of a Bitcoin wallet. Share it with a watch-only app and you can follow your balance forever, without ever exposing a private key. Here's what each prefix means, why watching is safe, and the privacy trade-offs to know.</p>
+
+      <div class="callout">
+        <strong>In a nutshell:</strong> all three are extended public keys. The prefix just signals the address type, xpub = legacy (1…), ypub = nested SegWit (3…), zpub = native SegWit (bc1…). A watch-only wallet reads balances from a public key only; it can never spend.
+      </div>
+
+      <div class="toc">
+        <div class="toc-title">On this page</div>
+        <ul>
+          <li><a href="#extended-keys">What an extended public key is</a></li>
+          <li><a href="#prefixes">xpub vs ypub vs zpub</a></li>
+          <li><a href="#watch-only">What a watch-only wallet is</a></li>
+          <li><a href="#derivation">HD derivation and the gap limit</a></li>
+          <li><a href="#privacy">Privacy considerations</a></li>
+          <li><a href="#iphone">Track an xpub on iPhone</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <h2 id="extended-keys">What an extended public key is</h2>
+      <p>Modern Bitcoin wallets are <strong>hierarchical deterministic (HD)</strong>. From a single seed phrase, the wallet derives an effectively unlimited tree of keys and addresses. Every branch of that tree has two halves: a private key, which can sign and spend, and a matching public key, which can only receive and be observed.</p>
+      <p>An <strong>extended public key</strong>, the thing that starts with xpub, ypub or zpub, is the public half of one account branch. Hand it to a piece of software and that software can mathematically derive <em>every</em> receive and change address in the account, watch them on the blockchain, and add up your balance. What it cannot do is produce a single signature, because the private side of the tree never travels with the public key.</p>
+
+      <h2 id="prefixes">xpub vs ypub vs zpub</h2>
+      <p>Here's the part that confuses people: xpub, ypub and zpub are not three different technologies. They encode the same kind of key. The leading letter is a <strong>version prefix</strong> (defined by SLIP-0132) that tells the wallet which address format to derive, so the addresses it shows match the ones your hardware actually generates.</p>
+      <ul>
+        <li><strong>xpub, legacy P2PKH (BIP44).</strong> The original format. Derivation path <code>m/44'/0'/0'</code>, producing addresses that start with <strong>1</strong>. Widely compatible, but the most expensive to spend from because the inputs are larger.</li>
+        <li><strong>ypub, nested SegWit, P2SH-P2WPKH (BIP49).</strong> SegWit wrapped inside a legacy-style script. Path <code>m/49'/0'/0'</code>, with addresses that start with <strong>3</strong>. A middle ground that older services accept while still cutting fees.</li>
+        <li><strong>zpub, native SegWit, P2WPKH (BIP84).</strong> The modern default. Path <code>m/84'/0'/0'</code>, with bech32 addresses that start with <strong>bc1q</strong>. The cheapest to transact with and the most widely recommended today.</li>
+      </ul>
+      <p>The practical rule: export whichever prefix matches the address type you use. If your wallet hands you bc1 addresses, give a watch-only app the <strong>zpub</strong>. Feed it the wrong prefix and the derived addresses simply won't line up with your real ones, so the balance reads as zero.</p>
+
+      <h2 id="watch-only">What a watch-only wallet is, and why it's safe</h2>
+      <p>A <strong>watch-only wallet</strong> imports a public key (an xpub/ypub/zpub) or even a single address, and nothing else. It is, in the most literal sense, read-only. You get the full picture, balance, incoming and outgoing transactions, confirmation status, with none of the spending power.</p>
+      <p>This is the safe way to keep an eye on cold storage. Your hardware wallet or signing device keeps the private keys offline; your phone only ever sees the public side. Even if your phone is lost or compromised, an attacker learns your balance and history but cannot move a single satoshi. A well-built app reinforces this: <a href="/">Bitcoin Insight</a> <strong>rejects private keys outright</strong>, if you ever paste a seed or a WIF private key by accident, it refuses the input rather than storing it.</p>
+
+      <h2 id="derivation">HD derivation and the gap limit</h2>
+      <p>When you add an extended public key, the app walks the HD tree (BIP32) to generate your addresses: one chain for receive addresses, another for change. Because the tree is deterministic, the same xpub always yields the same sequence of addresses, on any compliant wallet.</p>
+      <p>To know when to stop scanning, wallets use a <strong>gap limit</strong>, conventionally <strong>20</strong> consecutive unused addresses. The app derives addresses in order and checks each for activity; once it hits 20 in a row that have never been used, it assumes the rest are empty and stops. This keeps lookups fast, but it has an edge case: if you somehow skipped ahead and left a gap larger than the limit, funds beyond that gap may not be detected until the limit is raised. For everyday wallets this almost never happens.</p>
+
+      <h2 id="privacy">Privacy considerations</h2>
+      <p>Watch-only is safe for your <em>funds</em>, but be deliberate about <em>privacy</em>. An extended public key reveals the entire account: anyone holding it can derive and monitor all of your addresses, link them together as one wallet, and see your total balance and history. So treat an xpub as sensitive even though it can't spend.</p>
+      <p>There's also the data source. To show a balance, a watch-only app has to ask <em>some</em> server whether each derived address has coins. In <a href="/">Bitcoin Insight</a> the key never leaves your device, <strong>derivation happens on-device</strong> and the key is stored in the iOS Keychain, but the resulting addresses are looked up via the public <a href="https://mempool.space" target="_blank" rel="noopener">mempool.space</a> API. That means the data provider can see the addresses being queried. For most people this is a fine trade-off; if you need maximum privacy, running your own node and pointing tools at it is the gold standard.</p>
+
+      <h2 id="iphone">Track an xpub balance on iPhone with Bitcoin Insight</h2>
+      <p><a href="/">Bitcoin Insight</a> is a native iOS app (iOS 17+) built for exactly this. Adding a watch-only wallet takes a few seconds:</p>
+      <ul>
+        <li><strong>Paste an xpub, ypub or zpub</strong>, or a single address, and the app derives your addresses on-device using the matching BIP path.</li>
+        <li><strong>Private keys are rejected.</strong> The import is watch-only by design; seeds and private keys are refused, never stored.</li>
+        <li><strong>Face ID, Touch ID or Optic ID lock.</strong> Gate the wallet behind biometrics so balances stay private even if your phone is unlocked.</li>
+        <li><strong>Hide balances with a tap</strong> for glancing in public, and store the key safely in the iOS Keychain.</li>
+        <li><strong>See it in context</strong> alongside the live mempool, <a href="/guides/how-to-read-the-bitcoin-mempool/">fee estimates</a>, the block height and the built-in block explorer.</li>
+      </ul>
+      <p>It's free, open source under the MIT license, with no accounts, no ads and no tracking, the only paid extra is a one-time unlock for the Home and Lock Screen widgets.</p>
+
+      <div class="callout">
+        <strong>New to the dashboard?</strong> See why there's <a href="/guides/official-mempool-app-iphone/">no official mempool app for iPhone</a>, and learn <a href="/guides/how-to-read-the-bitcoin-mempool/">how to read the Bitcoin mempool</a>.
+      </div>
+
+      <h2 id="faq">FAQ</h2>
+      <h3>Is a watch-only wallet safe?</h3>
+      <p>Yes. A watch-only wallet holds only your extended public key (xpub, ypub or zpub), never a private key or seed phrase. It can show balances and transaction history, but it cannot move funds, because spending requires the private keys that never leave your hardware or signing wallet. Bitcoin Insight goes a step further and rejects private keys outright if you ever paste one by mistake.</p>
+      <h3>What is the difference between xpub, ypub and zpub?</h3>
+      <p>They are the same kind of extended public key with different version prefixes that signal which address type a wallet uses. xpub maps to legacy P2PKH addresses that start with 1, ypub maps to nested SegWit P2SH addresses that start with 3, and zpub maps to native SegWit bech32 addresses that start with bc1. Use the prefix your wallet exported so the addresses derived for watching match the ones you actually use.</p>
+      <h3>Can I track an xpub balance on iPhone with Face ID?</h3>
+      <p>Yes. Bitcoin Insight is a native iOS app that lets you add an xpub, ypub or zpub as a watch-only wallet. Addresses are derived on-device, the key is stored in the iOS Keychain, and you can lock the wallet behind Face ID, Touch ID or Optic ID and hide balances with a tap. It is free, with no account required.</p>
+    </article>
+
+    <div class="cta-card">
+      <h2>Watch your xpub, safely.</h2>
+      <p>Add an xpub, ypub or zpub as a watch-only wallet, on-device derivation, Face ID, never a private key. Free on iPhone.</p>
+      <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+    </div>
+
+    <nav class="related" aria-label="Related guides">
+      <h2>Keep reading</h2>
+      <ul>
+        <li><a href="/guides/official-mempool-app-iphone/">Official mempool app for iPhone <span>The native option for iOS.</span></a></li>
+        <li><a href="/guides/how-to-read-the-bitcoin-mempool/">How to read the Bitcoin mempool <span>What the mempool is and how to use it.</span></a></li>
+        <li><a href="/guides/what-is-moscow-time/">What is Moscow time? <span>The sats-per-dollar clock explained.</span></a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="../../assets/logo.png" alt="Bitcoin Insight logo" width="30" height="30">
+        Bitcoin Insight
+      </div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/guides/">Guides</a>
+        <a href="https://apps.apple.com/app/id6753660088" target="_blank" rel="noopener">App Store</a>
+        <a href="https://github.com/Miotares/bitcoin-insight" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; <span id="year">2026</span> Bitcoin Insight · Free &amp; open source under the MIT License. Not affiliated with Apple or mempool.space.</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const navBar = document.getElementById('navBar');
+    const onScroll = () => navBar.classList.toggle('scrolled', window.scrollY > 16);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  </script>
+</body>
+</html>
